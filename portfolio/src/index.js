@@ -1,58 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {
-  withStyles,
-  createStyleSheet,
-  MuiThemeProvider
-} from "material-ui/styles";
-import { getDefaultContext } from "./style/createDefaultContext";
+import Typography from 'material-ui/Typography'
 
-const styleSheet = createStyleSheet("App", theme => ({
-  "@global": {
-    html: {
-      background: theme.palette.background.default,
-      fontFamily: theme.typography.fontFamily,
-      WebkitFontSmoothing: "antialiased", // Antialiasing.
-      MozOsxFontSmoothing: "grayscale" // Antialiasing.
-    },
-    body: {
-      margin: 0
-    },
-    a: {
-      color: "inherit"
-    }
-  }
-}));
+class Portfolio extends Component {
 
-let AppWrapper = props =>
-  <div>
-    {props.children}
-  </div>;
-
-AppWrapper = withStyles(styleSheet)(AppWrapper);
-
-class App extends Component {
-  componentDidMount() {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
-    if (jssStyles && jssStyles.parentNode) {
-      jssStyles.parentNode.removeChild(jssStyles);
-    }
-  }
-
-  render() {
-    const { styleManager, theme } = getDefaultContext();
+  render(){
     return (
-      <MuiThemeProvider styleManager={styleManager} theme={theme}>
-        <AppWrapper>
-			<h1>Hello world</h1>
-        </AppWrapper>
-      </MuiThemeProvider>
-    );
+    <Typography
+    type="display4"
+    >
+      Hello World
+    </Typography>
+      )
   }
 }
 
-App.propTypes = {
-};
-
-export default App;
+export default Portfolio
