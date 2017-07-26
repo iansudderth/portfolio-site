@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "dev": "NODE_ENV=development node server.js",
+    "dev-seed": "NODE_ENV=development node server.js --seed",
+    "db": "mongod --dbpath=./db/",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "heroku-postbuild": "next build",
+    "analyze": "cross-env ANALYZE=1 next build"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "express": "^4.15.3",
+    "material-ui": "next",
+    "material-ui-icons": "^1.0.0-alpha.19",
+    "next": "beta",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-jss": "^7.0.2"
+  }
+}
