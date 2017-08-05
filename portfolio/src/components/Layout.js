@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Typography from 'material-ui/Typography'
 import { withStyles, createStyleSheet } from 'material-ui/styles';
+import Navbar from './Navbar'
 
 const styles = createStyleSheet(theme => ({
 	test:{
@@ -12,9 +12,14 @@ const styles = createStyleSheet(theme => ({
 const Layout = props => {
 	return (
 		<div>
+			<Navbar />
 			<h1 className={props.classes.test}>Hello Again</h1>
 		</div>
 		)
+}
+
+Layout.propTypes = {
+	classes: PropTypes.object
 }
 
 export default withStyles(styles)(Layout)
