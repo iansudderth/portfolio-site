@@ -1,14 +1,14 @@
-import React from 'react'
-
+import React from "react";
+import AppBar from 'material-ui/AppBar'
 
 const Navbar = props => {
 	return (
 		<div>
-			<h1>
-				This is the Navbar!!
-			</h1>
+			<AppBar>
+				<h1>Yo</h1>
+			</AppBar>
 		</div>
-		)
-}
+	);
+};
 
-export default Navbar
+export default Navbar;

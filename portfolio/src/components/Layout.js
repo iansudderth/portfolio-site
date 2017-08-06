@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles, createStyleSheet } from 'material-ui/styles';
-import Navbar from './Navbar'
+import { withStyles, createStyleSheet } from "material-ui/styles";
+import Navbar from "./Navbar";
 
 const styles = createStyleSheet(theme => ({
-	test:{
-		color:'red'
+	test: {
+		color: "red"
 	}
-}))
+}));
 
 const Layout = props => {
 	return (
@@ -15,11 +15,11 @@ const Layout = props => {
 			<Navbar />
 			<h1 className={props.classes.test}>Hello Again</h1>
 		</div>
-		)
-}
+	);
+};
 
 Layout.propTypes = {
 	classes: PropTypes.object
-}
+};
 
-export default withStyles(styles)(Layout)
+export default withStyles(styles)(Layout);
