@@ -19,7 +19,7 @@ class Layout extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activePage: "about"
+			activePage: "portfolio"
 		};
 	}
 
