@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles, createStyleSheet } from "material-ui/styles";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar.js";
 
 const styles = createStyleSheet(theme => ({
 	test: {
