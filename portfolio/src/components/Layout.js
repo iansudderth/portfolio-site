@@ -12,7 +12,7 @@ const styles = createStyleSheet(theme => ({
 const Layout = props => {
 	return (
 		<div>
-			<Navbar />
+			<Navbar activePage={"about"} />
 			<h1 className={props.classes.test}>Hello Again</h1>
 		</div>
 	);

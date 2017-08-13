@@ -7,7 +7,7 @@ import { Tab } from "material-ui/Tabs";
 import IconButton from "material-ui/IconButton";
 import MenuIcon from "material-ui-icons/Menu";
 
-const styleSheet = createStyleSheet({
+const styleSheet = createStyleSheet(theme => ({
 	flex: {
 		display: "flex",
 		justifyContent: "space-between"
@@ -21,17 +21,26 @@ const styleSheet = createStyleSheet({
 		}
 	},
 	navFont: {
-		color: "white"
+		color: "white",
+		padding: "5px"
 	},
 	iconGroup: {
 		"@media(min-width:601px)": {
 			display: "none"
 		}
+	},
+	active: {
+		borderBottom: "2px solid red"
 	}
-});
+}));
 
 const Navbar = props => {
 	const classes = props.classes;
+	const aboutActive = props.activePage == "about" ? classes.active : "";
+	const portfolioActive =
+		props.activePage == "portfolio" ? classes.active : "";
+	const connectActive = props.activePage == "connect" ? classes.active : "";
+
 	return (
 		<div>
 			<AppBar>
@@ -42,13 +51,22 @@ const Navbar = props => {
 						</Typography>
 					</div>
 					<div className={classes.flexGroup}>
-						<Typography className={classes.navFont} type="title">
+						<Typography
+							className={`${classes.navFont} ${aboutActive}`}
+							type="title"
+						>
 							About
 						</Typography>
-						<Typography className={classes.navFont} type="title">
+						<Typography
+							className={`${classes.navFont} ${portfolioActive}`}
+							type="title"
+						>
 							Portfolio
 						</Typography>
-						<Typography className={classes.navFont} type="title">
+						<Typography
+							className={`${classes.navFont} ${connectActive}`}
+							type="title"
+						>
 							Connect
 						</Typography>
 					</div>
