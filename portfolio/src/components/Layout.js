@@ -8,9 +8,9 @@ import PortfolioPage from "./PortfolioPage/";
 
 const styles = createStyleSheet(theme => ({
 	pageWrapper: {
-		marginTop: "64px",
+		marginTop: "88px",
 		"@media (max-width: 600px)": {
-			marginTop: "56px"
+			marginTop: "80px"
 		}
 	}
 }));
