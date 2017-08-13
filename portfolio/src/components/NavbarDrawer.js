@@ -48,7 +48,9 @@ class NavbarDrawer extends Component {
 
 	changePageComposer = page => {
 		const closeDrawer = this.closeDrawer;
+		const changePage = this.props.changePageComposer(page);
 		return () => {
+			changePage();
 			closeDrawer();
 		};
 	};
@@ -88,7 +90,7 @@ class NavbarDrawer extends Component {
 							<Typography
 								type="title"
 								className={`${aboutActive} ${classes.drawerText}`}
-								onClick={this.changePageComposer()}
+								onClick={this.changePageComposer("about")}
 							>
 								About
 							</Typography>
@@ -97,7 +99,7 @@ class NavbarDrawer extends Component {
 							<Typography
 								type="title"
 								className={`${portfolioActive} ${classes.drawerText}`}
-								onClick={this.changePageComposer()}
+								onClick={this.changePageComposer("portfolio")}
 							>
 								Portfolio
 							</Typography>
@@ -106,7 +108,7 @@ class NavbarDrawer extends Component {
 							<Typography
 								type="title"
 								className={`${connectActive} ${classes.drawerText}`}
-								onClick={this.changePageComposer()}
+								onClick={this.changePageComposer("connect")}
 							>
 								Connect
 							</Typography>
@@ -120,7 +122,8 @@ class NavbarDrawer extends Component {
 
 NavbarDrawer.propTypes = {
 	classes: PropTypes.object,
-	activePage: PropTypes.string
+	activePage: PropTypes.string,
+	changePageComposer: PropTypes.func
 };
 
 export default withStyles(styleSheet)(NavbarDrawer);
