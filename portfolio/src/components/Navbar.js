@@ -1,11 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withStyles, createStyleSheet } from "material-ui/styles";
 import AppBar from "material-ui/AppBar";
 import Typography from "material-ui/Typography";
 import Toolbar from "material-ui/Toolbar";
-import { Tab } from "material-ui/Tabs";
-import IconButton from "material-ui/IconButton";
-import MenuIcon from "material-ui-icons/Menu";
+import NavbarDrawer from "./NavbarDrawer.js";
 
 const styleSheet = createStyleSheet(theme => ({
 	flex: {
@@ -71,14 +70,17 @@ const Navbar = props => {
 						</Typography>
 					</div>
 					<div className={classes.iconGroup}>
-						<IconButton color="contrast" aria-label="Menu">
-							<MenuIcon />
-						</IconButton>
+						<NavbarDrawer />
 					</div>
 				</Toolbar>
 			</AppBar>
 		</div>
 	);
+};
+
+Navbar.propTypes = {
+	classes: PropTypes.object,
+	activePage: PropTypes.string
 };
 
 export default withStyles(styleSheet)(Navbar);
