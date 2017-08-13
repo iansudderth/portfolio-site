@@ -70,7 +70,7 @@ const Navbar = props => {
 						</Typography>
 					</div>
 					<div className={classes.iconGroup}>
-						<NavbarDrawer />
+						<NavbarDrawer activePage={props.activePage} />
 					</div>
 				</Toolbar>
 			</AppBar>
