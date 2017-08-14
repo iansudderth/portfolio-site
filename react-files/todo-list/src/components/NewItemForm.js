@@ -45,7 +45,7 @@ class NewItemForm extends Component {
 		return (
 			<div className={classes.container}>
 				<form onSubmit={this.submitHandler}>
-					<Grid container gutter={8} align={"center"}>
+					<Grid container align={"center"}>
 						<Grid item className={classes.typeItem}>
 							<TextField
 								id="newItem"
