@@ -5,6 +5,7 @@ import { withStyles, createStyleSheet } from "material-ui/styles";
 import Card, { CardActions, CardContent, CardMedia } from "material-ui/Card";
 import Typography from "material-ui/Typography";
 import Button from "material-ui/Button";
+import Dialog from "material-ui/Dialog";
 
 const styleSheet = createStyleSheet({
 	root: {
@@ -23,13 +24,22 @@ class PortfolioItem extends Component {
 		super(props);
 
 		this.state = {
-			modalOpen: false
+			dialogOpen: false
 		};
 	}
+
+	openDialog = () => {
+		this.setState({ dialogOpen: true });
+	};
+
+	closeDialog = () => {
+		this.setState({ dialogOpen: false });
+	};
 
 	render() {
 		const item = this.props.item;
 		const classes = this.props.classes;
+		const ItemDialog = item.dialog;
 		return (
 			<Grid item xs={12} md={6} lg={3} className={classes.root}>
 				<Card>
@@ -45,14 +55,22 @@ class PortfolioItem extends Component {
 							{item.title}
 						</Typography>
 						<Typography type={"subheading"}>
-							{item.title}
+							{item.description}
 						</Typography>
 					</CardContent>
 					<CardActions className={classes.cardActions}>
-						<Button dense>About</Button>
+						<Button dense onClick={this.openDialog}>
+							About
+						</Button>
 						<Button dense>Launch</Button>
 					</CardActions>
 				</Card>
+				<Dialog
+					open={this.state.dialogOpen}
+					onRequestClose={this.closeDialog}
+				>
+					{item.dialog ? <ItemDialog /> : ""}
+				</Dialog>
 			</Grid>
 		);
 	}

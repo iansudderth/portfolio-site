@@ -1,9 +1,12 @@
+import TestDialog from "./PortfolioItemDialogs/test.js";
+
 const portfolioItems = [
 	{
 		id: "first",
 		title: "First Portfolio Item",
 		description: "Look at this bitch",
-		image: "http://via.placeholder.com/350x350"
+		image: "http://via.placeholder.com/350x350",
+		dialog: TestDialog
 	},
 	{
 		id: "second",
