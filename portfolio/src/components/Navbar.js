@@ -10,7 +10,9 @@ import { indigo } from "material-ui/colors";
 const styleSheet = createStyleSheet(theme => ({
 	flex: {
 		display: "flex",
-		justifyContent: "space-between"
+		justifyContent: "space-between",
+		width: "100%",
+		boxSizing: "border-box"
 	},
 	flexGroup: {
 		display: "flex",
@@ -37,6 +39,10 @@ const styleSheet = createStyleSheet(theme => ({
 		"&:hover": {
 			borderBottom: `2px solid ${indigo[300]}`
 		}
+	},
+	container: {
+		width: "100%",
+		boxSizing: "border-box"
 	}
 }));
 
