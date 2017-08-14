@@ -5,7 +5,7 @@ import { withStyles, createStyleSheet } from "material-ui/styles";
 import Card, { CardActions, CardContent, CardMedia } from "material-ui/Card";
 import Typography from "material-ui/Typography";
 import Button from "material-ui/Button";
-import Dialog from "material-ui/Dialog";
+import Dialog, { DialogActions } from "material-ui/Dialog";
 
 const styleSheet = createStyleSheet({
 	root: {
@@ -15,6 +15,12 @@ const styleSheet = createStyleSheet({
 		width: "100%"
 	},
 	cardActions: {
+		justifyContent: "space-between"
+	},
+	dialog: {
+		overflow: "scroll"
+	},
+	dialogActions: {
 		justifyContent: "space-between"
 	}
 });
@@ -59,9 +65,11 @@ class PortfolioItem extends Component {
 						</Typography>
 					</CardContent>
 					<CardActions className={classes.cardActions}>
-						<Button dense onClick={this.openDialog}>
-							About
-						</Button>
+						{item.dialog
+							? <Button dense onClick={this.openDialog}>
+									About
+								</Button>
+							: <div />}
 						<Button dense href={item.link} target="_blank">
 							Launch
 						</Button>
@@ -70,8 +78,24 @@ class PortfolioItem extends Component {
 				<Dialog
 					open={this.state.dialogOpen}
 					onRequestClose={this.closeDialog}
+					classes={{
+						paper: classes.dialog
+					}}
 				>
 					{item.dialog ? <ItemDialog /> : ""}
+					<DialogActions className={classes.dialogActions}>
+						{item.link
+							? <Button href={item.link} target="_blank">
+									Launch
+								</Button>
+							: <div />}
+						{item.github
+							? <Button href={item.github} target="_blank">
+									GitHub
+								</Button>
+							: <div />}
+						<Button onClick={this.closeDialog}>Close</Button>
+					</DialogActions>
 				</Dialog>
 			</Grid>
 		);
