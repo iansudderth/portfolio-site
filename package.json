@@ -1,28 +1,45 @@
 {
-  "scripts": {
-    "dev": "NODE_ENV=development node server.js",
-    "dev-seed": "NODE_ENV=development node server.js --seed",
-    "db": "mongod --dbpath=./db/",
-    "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "heroku-postbuild": "next build",
-    "analyze": "cross-env ANALYZE=1 next build"
-  },
-  "dependencies": {
-    "axios": "^0.16.2",
-    "express": "^4.15.3",
-    "material-ui": "@latest",
-    "material-ui-icons": "^1.0.0-alpha.19",
-    "next": "^3.0.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-jss": "^7.0.2"
-  },
-  "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^4.4.0",
-    "eslint-config-google": "^0.9.1",
-    "eslint-plugin-react": "^7.1.0",
-    "prettier": "^1.5.3"
-  }
+    "scripts": {
+        "dev": "NODE_ENV=development node server.js",
+        "dev-seed": "NODE_ENV=development node server.js --seed",
+        "db": "mongod --dbpath=./db/",
+        "build": "next build",
+        "start": "NODE_ENV=production node server.js",
+        "heroku-postbuild": "next build",
+        "analyze": "cross-env ANALYZE=1 next build"
+    },
+    "dependencies": {
+        "axios": "^0.16.2",
+        "body-parser": "^1.17.2",
+        "compression": "^1.7.0",
+        "express": "^4.15.3",
+        "lodash": "^4.17.4",
+        "material-ui": "@latest",
+        "material-ui-icons": "^1.0.0-alpha.19",
+        "mongoose": "^4.11.7",
+        "next": "^3.0.0",
+        "react": "^15.4.2",
+        "react-dom": "^15.4.2",
+        "react-jss": "^7.0.2",
+        "react-md-spinner": "^0.2.5",
+        "react-redux": "^5.0.6",
+        "react-sortable-hoc": "^0.6.7",
+        "react-touch": "^0.4.2",
+        "redux": "^3.7.2",
+        "redux-throttle-actions": "^1.1.0",
+        "redux-thunk": "^2.2.0",
+        "throttle-action": "^0.0.4",
+        "typeface-roboto": "^0.0.35"
+    },
+    "devDependencies": {
+        "babel-eslint": "^7.2.3",
+        "cross-env": "^5.0.5",
+        "eslint": "^4.4.1",
+        "eslint-config-google": "^0.9.1",
+        "eslint-plugin-react": "^7.2.1",
+        "prettier": "^1.5.3",
+        "react-dev-utils": "^3.1.1",
+        "redux-devtools-extension": "^2.13.2",
+        "webpack-bundle-analyzer": "^2.9.0"
+    }
 }
