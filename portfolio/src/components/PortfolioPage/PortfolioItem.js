@@ -62,7 +62,9 @@ class PortfolioItem extends Component {
 						<Button dense onClick={this.openDialog}>
 							About
 						</Button>
-						<Button dense>Launch</Button>
+						<Button dense href={item.link} target="_blank">
+							Launch
+						</Button>
 					</CardActions>
 				</Card>
 				<Dialog
