@@ -4,10 +4,7 @@ import PropTypes from "prop-types";
 import ListItem from "./ListItem.js";
 import List from "material-ui/List";
 import { withStyles, createStyleSheet } from "material-ui/styles";
-import {
-	fadedColorParser,
-	textColorParser
-} from "../helpers/colorParser.js";
+import { fadedColorParser, textColorParser } from "../helpers/colorParser.js";
 
 const styleSheet = createStyleSheet("CompleteList", {
 	container: {

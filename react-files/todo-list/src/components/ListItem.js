@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 // import _ from 'lodash';
 import { SortableHandle } from "react-sortable-hoc";
 import { ListItem } from "material-ui/List";
@@ -9,10 +9,7 @@ import Reorder from "material-ui-icons/Reorder";
 import DeleteForever from "material-ui-icons/DeleteForever";
 import Settings from "material-ui-icons/Settings";
 import FormatListBulleted from "material-ui-icons/FormatListBulleted";
-import {
-	red,
-	grey
-} from "material-ui/colors";
+import { red, grey } from "material-ui/colors";
 import Button from "material-ui/Button";
 import Menu from "material-ui/Menu";
 import Typography from "material-ui/Typography";
@@ -202,15 +199,15 @@ class BaseListItem extends Component {
 }
 
 BaseListItem.propTypes = {
-deleteItemComposer: PropTypes.func,
-changeBaseComposer: PropTypes.func,
-completeItemComposer: PropTypes.func,
-itemColor: PropTypes.string,
-textColor: PropTypes.string,
-value: PropTypes.object,
-bgColor: PropTypes.string,
-updateItem: PropTypes.func,
-changeColorComposer: PropTypes.func
+	deleteItemComposer: PropTypes.func,
+	changeBaseComposer: PropTypes.func,
+	completeItemComposer: PropTypes.func,
+	itemColor: PropTypes.string,
+	textColor: PropTypes.string,
+	value: PropTypes.object,
+	bgColor: PropTypes.string,
+	updateItem: PropTypes.func,
+	changeColorComposer: PropTypes.func
 };
 
 export default BaseListItem;
