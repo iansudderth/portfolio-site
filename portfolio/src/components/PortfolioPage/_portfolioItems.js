@@ -2,29 +2,13 @@ import TestDialog from "./PortfolioItemDialogs/test.js";
 
 const portfolioItems = [
 	{
-		id: "first",
-		title: "First Portfolio Item",
-		description: "Look at this bitch",
-		image: "http://via.placeholder.com/350x350",
-		dialog: TestDialog
-	},
-	{
-		id: "second",
-		title: "Second Portfolio Item",
-		description: "Look at this bitch",
-		image: "http://via.placeholder.com/350x350"
-	},
-	{
-		id: "third",
-		title: "Third Portfolio Item",
-		description: "Look at this bitch",
-		image: "http://via.placeholder.com/350x350"
-	},
-	{
-		id: "fourth",
-		title: "fourth Portfolio Item",
-		description: "Look at this bitch",
-		image: "http://via.placeholder.com/350x350"
+		id: "todo",
+		title: "Recursive Todo List",
+		description:
+			"A twist on the classic todo-list project, where every item in the list is it's own todo list.",
+		image: "/static/todo-screenshot.jpg",
+		dialog: TestDialog,
+		link: "https://limitless-caverns-83024.herokuapp.com/"
 	}
 ];
 
