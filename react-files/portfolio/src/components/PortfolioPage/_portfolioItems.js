@@ -5,9 +5,9 @@ import SiteDialog from "./PortfolioItemDialogs/SiteDialog.js";
 const portfolioItems = [
 	{
 		id: "todo",
-		title: "Recursive Todo List",
+		title: "Recursive To-do List",
 		description:
-			"A twist on the classic todo-list project, where every item in the list is it's own todo list.",
+			"A twist on the classic to-do-list project, where every item in the list is it's own to-do list.",
 		image: "/static/todo-screenshot.jpg",
 		dialog: TodoDialog,
 		link: "/todo/new",
@@ -22,6 +22,30 @@ const portfolioItems = [
 		github: "https://github.com/iansudderth/portfolio-site",
 		image: "/static/portfolio-screenshot.jpg",
 		dialog: SiteDialog
+	},
+	{
+		id: "recipe",
+		title: "Parametric Recipes prototype",
+		description:
+			"Interactive parametric recipes inspired by The Modernist Cuisine. Early prototype of a future project.",
+		image: "/static/recipe-screenshot.jpg",
+		link: "https://codepen.io/isudderth/pen/QKmazm"
+	},
+	{
+		id: "gradient-builder",
+		title: "CSS Gradient Builder",
+		description:
+			"A small Codepen project for making gradient creation interactive.",
+		image: "/static/gradient-screenshot.jpg",
+		link: "https://codepen.io/isudderth/pen/woqdaP"
+	},
+	{
+		id: "quote",
+		title: "Random Quote Generator",
+		description:
+			"A project for FreeCodeCamp, making a machine that spits out random quotes.",
+		link: "https://codepen.io/isudderth/pen/QKpdZE",
+		image: "/static/quote-screenshot.jpg"
 	}
 ];
 
