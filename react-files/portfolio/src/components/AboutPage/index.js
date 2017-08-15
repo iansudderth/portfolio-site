@@ -41,7 +41,7 @@ const AboutPage = props => {
 						<Divider />
 						<div className={classes.descriptionGroup}>
 							<Avatar
-								src="/static/selfie.jpeg"
+								src="/static/selfie.jpg"
 								className={classes.avatar}
 							/>
 							<Typography type="headline">About Me</Typography>
