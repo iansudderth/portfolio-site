@@ -70,9 +70,11 @@ class PortfolioItem extends Component {
 									About
 								</Button>
 							: <div />}
-						<Button dense href={item.link} target="_blank">
-							Launch
-						</Button>
+						{item.link
+							? <Button dense href={item.link} target="_blank">
+									Launch
+								</Button>
+							: <div />}
 					</CardActions>
 				</Card>
 				<Dialog

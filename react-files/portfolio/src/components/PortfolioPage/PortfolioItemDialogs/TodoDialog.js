@@ -16,11 +16,11 @@ const TodoDialog = props => {
 
 	return (
 		<div className={classes.container}>
-			<Typography type="headline">Recursive Todo List</Typography>
+			<Typography type="headline">Recursive To-do List</Typography>
 			<br />
 			<Typography type="body1">
 				{
-					"For this project, I wanted to take a classic app, put a twist on it, and then execute it to a very polished level.  For a Todo List application, I thought it would be fun to have it so that each list item would itself be a todo-list.  This is also a greate use of React, as it would be highly interactive."
+					"For this project, I wanted to take a classic app, put a twist on it, and then execute it to a very polished level.  For a To-do List application, I thought it would be fun to have it so that each list item would itself be a to-do-list.  This is also a great use of React, as it would be highly interactive."
 				}
 			</Typography>
 			<br />
@@ -36,13 +36,13 @@ const TodoDialog = props => {
 			<br />
 			<Typography type="body1">
 				{
-					"The first challenge was to structure the Redux store in a way that would allow easy access to elements that were nested quite deeply.  This would be especially challenging as Redux doesn't work great with deeply nested data structures (perhaps integrating with Immutable.js and Redux-Immutable would help this), so instead I structured the store like a database in a object.  Each item has a unique key that stores all the information for that item, including a list of children items and the parent item.  When a new item is created, it is simply added to the object with a new key and its parent's child list is updated.  Using this method, the overhead for nesting lists within each other is negligeable."
+					"The first challenge was to structure the Redux store in a way that would allow easy access to elements that were nested quite deeply.  This would be especially challenging as Redux doesn't work great with deeply nested data structures (perhaps integrating with Immutable.js and Redux-Immutable would help this), so instead I structured the store like a database in a object.  Each item has a unique key that stores all the information for that item, including a list of children items and the parent item.  When a new item is created, it is simply added to the object with a new key and its parent's child list is updated.  Using this method, the overhead for nesting lists within each other is negligible."
 				}
 			</Typography>
 			<br />
 			<Typography type="body1">
 				{
-					"The value of Redux became apparent later on in the process, as adding features that manipulated the data structure could be abstracted to action dispatches and reducers without dissrupting the rest of the application.  Even better was that saving the state of the app to a database was as simple as saving the Redux store to the database (Redux-Thunk enabled the async code and AJAX call throttling to work seamlessly), which could then be loaded as initial state later on."
+					"The value of Redux became apparent later on in the process, as adding features that manipulated the data structure could be abstracted to action dispatches and reducers without disrupting the rest of the application.  Even better was that saving the state of the app to a database was as simple as saving the Redux store to the database (Redux-Thunk enabled the async code and AJAX call throttling to work seamlessly), which could then be loaded as initial state later on."
 				}
 			</Typography>
 			<br />

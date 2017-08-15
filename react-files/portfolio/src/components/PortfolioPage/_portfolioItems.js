@@ -1,5 +1,6 @@
 import TestDialog from "./PortfolioItemDialogs/test.js";
 import TodoDialog from "./PortfolioItemDialogs/TodoDialog.js";
+import SiteDialog from "./PortfolioItemDialogs/SiteDialog.js";
 
 const portfolioItems = [
 	{
@@ -12,6 +13,15 @@ const portfolioItems = [
 		link: "/todo/new",
 		github:
 			"https://github.com/iansudderth/portfolio-site/tree/master/react-files/todo-list/src"
+	},
+	{
+		id: "site",
+		title: "This Site",
+		description:
+			"A small Server-Side-Rendered React app as a Portfolio Site.",
+		github: "https://github.com/iansudderth/portfolio-site",
+		image: "/static/portfolio-screenshot.jpg",
+		dialog: SiteDialog
 	}
 ];
 
