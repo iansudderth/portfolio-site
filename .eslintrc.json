@@ -12,10 +12,11 @@
       "jsx": true
     }
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": ["airbnb"],
   "rules":{
     "react/no-unused-prop-types": [1],
     "react/prop-types": [1],
-    "no-unused-vars": [1]
+    "no-unused-vars": [1],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

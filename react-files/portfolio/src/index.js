@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from 'react';
 // import PropTypes from "prop-types";
-import Layout from "./components/Layout";
+import Layout from './components/Layout';
 
-class Portfolio extends Component {
-	render() {
-		return <Layout />;
-	}
+
+function Portfolio(props) {
+  return <Layout />;
 }
 
 export default Portfolio;

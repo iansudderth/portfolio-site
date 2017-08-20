@@ -1,6 +1,6 @@
-import React from "react";
-import Document, { Head, Main, NextScript } from "next/document";
-import { getContext, setContext } from "..//style/context";
+import React from 'react';
+import Document, { Head, Main, NextScript } from 'next/document';
+import { getContext, setContext } from '..//style/context';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -15,10 +15,10 @@ export default class MyDocument extends Document {
         <style
           id="jss-server-side"
           dangerouslySetInnerHTML={{
-            __html: context.sheetsRegistry.toString()
+            __html: context.sheetsRegistry.toString(),
           }}
         />
-      )
+      ),
     };
   }
 
@@ -33,8 +33,8 @@ export default class MyDocument extends Document {
           <meta
             name="viewport"
             content={
-              "user-scalable=0, initial-scale=1, maximum-scale=1, " +
-              "minimum-scale=1, width=device-width, height=device-height"
+              'user-scalable=0, initial-scale=1, maximum-scale=1, ' +
+              'minimum-scale=1, width=device-width, height=device-height'
             }
           />
           {/* PWA primary color */}

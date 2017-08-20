@@ -1,15 +1,15 @@
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import createPalette from "material-ui/styles/palette";
-import createMuiTheme from "material-ui/styles/theme";
-import { grey } from "material-ui/colors";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import createPalette from 'material-ui/styles/palette';
+import createMuiTheme from 'material-ui/styles/theme';
+import { grey } from 'material-ui/colors';
 
 const createDefaultContext = () =>
   MuiThemeProvider.createDefaultContext({
     theme: createMuiTheme({
       palette: createPalette({
-        primary: grey
-      })
-    })
+        primary: grey,
+      }),
+    }),
   });
 
 // Singleton hack as there is no way to pass variables from _document.js to pages yet.

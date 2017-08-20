@@ -1,11 +1,9 @@
-import React, { Component } from "react";
-import withRoot from "../style/withRoot";
-import Portfolio from "../react-files/portfolio/src/index.js";
+import React from 'react';
+import withRoot from '../style/withRoot';
+import Portfolio from '../react-files/portfolio/src/index';
 
-class Index extends Component {
-	render() {
-		return <Portfolio />;
-	}
+function Index(props) {
+  return <Portfolio />;
 }
 
 export default withRoot(Index);
