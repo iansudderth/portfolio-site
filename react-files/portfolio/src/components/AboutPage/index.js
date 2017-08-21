@@ -23,6 +23,10 @@ const styleSheet = createStyleSheet({
     float: 'right',
     marginBottom: 16,
     marginLeft: 16,
+    '@media(max-width: 600px)': {
+      width: 100,
+      height: 100,
+    },
   },
 });
 const AboutPage = (props) => {
@@ -79,7 +83,7 @@ const AboutPage = (props) => {
 };
 
 AboutPage.propTypes = {
-  classes: PropTypes.obj,
+  classes: PropTypes.object,
 };
 
 export default withStyles(styleSheet)(AboutPage);

@@ -108,7 +108,7 @@ const ConnectPage = (props) => {
 };
 
 ConnectPage.propTypes = {
-  classes: PropTypes.obj,
+  classes: PropTypes.object,
 };
 
 export default withStyles(styleSheet)(ConnectPage);
