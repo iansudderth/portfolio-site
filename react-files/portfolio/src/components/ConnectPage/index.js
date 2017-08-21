@@ -52,7 +52,9 @@ const ConnectPage = (props) => {
               {'Email'}
             </Typography>
             <Typography type="headline">
-              {'Ian.Sudderth@gmail.com'}
+              <a href="mailto:ian.sudderth@gmail.com">
+                {'Ian.Sudderth@gmail.com'}
+              </a>
             </Typography>
           </div>
         </Card>
