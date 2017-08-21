@@ -44,6 +44,10 @@ const styleSheet = createStyleSheet(theme => ({
     width: '100%',
     boxSizing: 'border-box',
   },
+  nameText: {
+    color: 'white',
+    fontSize: '2rem',
+  },
 }));
 
 const Navbar = (props) => {
@@ -64,7 +68,7 @@ const Navbar = (props) => {
       <AppBar>
         <Toolbar className={classes.flex}>
           <div>
-            <Typography type="title" className={classes.navFont}>
+            <Typography type="title" className={classes.nameText}>
               {'Ian Sudderth'}
             </Typography>
           </div>
@@ -106,6 +110,7 @@ const Navbar = (props) => {
 Navbar.propTypes = {
   classes: PropTypes.object,
   activePage: PropTypes.string,
+  changePage: PropTypes.func,
 };
 
 export default withStyles(styleSheet)(Navbar);
