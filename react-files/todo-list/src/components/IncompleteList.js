@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import _ from "lodash";
 import List from 'material-ui/List';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import ListItem from './ListItem';
 import { primaryColorParser, textColorParser } from '../helpers/colorParser';
 
-const styleSheet = createStyleSheet('IncompleteList', {
+const styleSheet = {
   container: {
     listStyle: 'none',
     padding: 0,
@@ -19,11 +19,11 @@ const styleSheet = createStyleSheet('IncompleteList', {
   helper: {
     transition: 0,
   },
-});
+};
 
-const SortableList = SortableContainer(props => (
+const SortableList = SortableContainer(props =>
   <List className={props.classForList}>
-    {props.items.map((value, index) => (
+    {props.items.map((value, index) =>
       <SortableListItem
         key={`item-${value.id}`}
         index={index}
@@ -35,12 +35,12 @@ const SortableList = SortableContainer(props => (
         bgColorComposer={props.bgColorComposer}
         textColorComposer={props.textColorComposer}
         updateItem={props.updateItem}
-      />
-    ))}
-  </List>
-));
+      />,
+    )}
+  </List>,
+);
 
-const SortableListItem = SortableElement(props => (
+const SortableListItem = SortableElement(props =>
   <ListItem
     value={props.value}
     changeBaseComposer={props.changeBaseComposer}
@@ -48,15 +48,12 @@ const SortableListItem = SortableElement(props => (
     completeItemComposer={props.completeItemComposer}
     changeColorComposer={props.changeColorComposer}
     itemColor={props.bgColorComposer(props.value.color)}
-    textColor={props.textColorComposer(
-      props.value.color,
-      props.value.complete,
-    )}
+    textColor={props.textColorComposer(props.value.color, props.value.complete)}
     updateItem={props.updateItem}
-  />
-));
+  />,
+);
 
-const IncompleteList = (props) => {
+const IncompleteList = props => {
   const classes = props.classes;
 
   function handleSort({ oldIndex, newIndex }) {

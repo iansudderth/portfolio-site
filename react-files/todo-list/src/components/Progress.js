@@ -6,7 +6,7 @@ import CheckIcon from 'material-ui-icons/Check';
 import ReportIcon from 'material-ui-icons/Report';
 import MDSpinner from 'react-md-spinner';
 
-const NetworkProgress = (props) => {
+const NetworkProgress = props => {
   let icon = '';
   switch (props.network) {
     case 'progress':
@@ -23,10 +23,7 @@ const NetworkProgress = (props) => {
   }
   return (
     <span>
-      <IconButton
-        style={{ color: props.textColor }}
-        onClick={props.updateData}
-      >
+      <IconButton style={{ color: props.textColor }} onClick={props.updateData}>
         {icon}
       </IconButton>
     </span>

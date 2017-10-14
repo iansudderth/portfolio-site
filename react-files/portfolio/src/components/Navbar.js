@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Typography from 'material-ui/Typography';
 import Toolbar from 'material-ui/Toolbar';
 import { indigo } from 'material-ui/colors';
 import NavbarDrawer from './NavbarDrawer';
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = {
   flex: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -48,20 +48,21 @@ const styleSheet = createStyleSheet(theme => ({
     color: 'white',
     fontSize: '2rem',
   },
-}));
+};
 
-const Navbar = (props) => {
+const Navbar = props => {
   const classes = props.classes;
   const aboutActive =
-  props.activePage === 'about' ? classes.active : classes.inactive;
+    props.activePage === 'about' ? classes.active : classes.inactive;
   const portfolioActive =
-  props.activePage === 'portfolio' ? classes.active : classes.inactive;
+    props.activePage === 'portfolio' ? classes.active : classes.inactive;
   const connectActive =
-  props.activePage === 'connect' ? classes.active : classes.inactive;
+    props.activePage === 'connect' ? classes.active : classes.inactive;
 
-  const changePageComposer = page => function () {
-    props.changePage(page);
-  };
+  const changePageComposer = page =>
+    function() {
+      props.changePage(page);
+    };
 
   return (
     <div>

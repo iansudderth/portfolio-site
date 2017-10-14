@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import { DialogActions } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet({
+const styleSheet = {
   container: {
     padding: '24px',
   },
-});
+};
 
-const SiteDialog = (props) => {
+const SiteDialog = props => {
   const classes = props.classes;
 
   return (

@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import { DialogActions } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 
-const styleSheet = createStyleSheet({
+const styleSheet = {
   container: {
     padding: '24px',
   },
-});
+};
 
-const TodoDialog = (props) => {
+const TodoDialog = props => {
   const classes = props.classes;
 
   return (

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import { indigo, deepOrange, grey } from 'material-ui/colors';
 import Navbar from './Navbar';
 import AboutPage from './AboutPage/';
 import ConnectPage from './ConnectPage/';
 import PortfolioPage from './PortfolioPage/';
 
-const styles = createStyleSheet(theme => ({
+const styles = {
   '@global body': {
     minHeight: '100vh',
     margin: 0,
@@ -27,7 +27,7 @@ const styles = createStyleSheet(theme => ({
     overflowY: 'scroll',
     overflowX: 'hidden',
   },
-}));
+};
 
 class Layout extends Component {
   constructor(props) {
@@ -37,37 +37,37 @@ class Layout extends Component {
     };
   }
 
- changePage = (page) => {
-   this.setState({ activePage: page });
- };
+  changePage = page => {
+    this.setState({ activePage: page });
+  };
 
- render() {
-   const ActivePage = () => {
-     switch (this.state.activePage) {
-       case 'about':
-         return <AboutPage />;
-       case 'portfolio':
-         return <PortfolioPage />;
-       case 'connect':
-         return <ConnectPage />;
-       default:
-         return <AboutPage />;
-     }
-   };
+  render() {
+    const ActivePage = () => {
+      switch (this.state.activePage) {
+        case 'about':
+          return <AboutPage />;
+        case 'portfolio':
+          return <PortfolioPage />;
+        case 'connect':
+          return <ConnectPage />;
+        default:
+          return <AboutPage />;
+      }
+    };
 
-   const classes = this.props.classes;
-   return (
-     <div>
-       <Navbar
-         activePage={this.state.activePage}
-         changePage={this.changePage}
-       />
-       <div>
-         <ActivePage />
-       </div>
-     </div>
-   );
- }
+    const classes = this.props.classes;
+    return (
+      <div>
+        <Navbar
+          activePage={this.state.activePage}
+          changePage={this.changePage}
+        />
+        <div>
+          <ActivePage />
+        </div>
+      </div>
+    );
+  }
 }
 
 Layout.propTypes = {

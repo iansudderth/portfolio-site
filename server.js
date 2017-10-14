@@ -1,81 +1,123 @@
-const express = require("express");
-const next = require("next");
-const compression = require("compression");
+const express = require('express');
+const next = require('next');
+const compression = require('compression');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const _ = require('lodash');
+const session = require('express-session');
+const bluebird = require('bluebird');
+const cookieParser = require('cookie-parser');
+const MongoStore = require('connect-mongo')(session);
 
-const dev = process.env.NODE_ENV !== "production";
-const port = process.env.PORT || 3000;
-const app = next({ dir: ".", dev });
-const handle = app.getRequestHandler();
-const mongoose = require("mongoose");
-const TodoState = require("./schema/todoListSchema.js");
-const _ = require("lodash");
-const seedDB = require("./schema/seed.js");
-const generateNewTodoList = require("./schema/generateNewTodoList.js");
-const bodyParser = require("body-parser");
+const config = require('./server-files/config');
 
-var dburl = process.env.DATABASEURL || "mongodb://localhost/portfolio";
-mongoose.connect(dburl);
+// =======================
+// Mongoose Cofigs
+// =======================
 
-if (_.includes(process.argv, "--seed")) {
-  seedDB();
+mongoose.connect(config.dburl);
+mongoose.Promise = bluebird;
+const db = mongoose.connection;
+
+// =======================
+// Seeds
+// =======================
+
+const todoSeedDB = require('./server-files/seeds/todoSeed');
+const recipeBigSeedDB = require('./server-files/seeds/recipeBigSeed');
+const recipeSeedDB = require('./server-files/seeds/recipeSeed');
+
+if (_.includes(process.argv, '--seed')) {
+  todoSeedDB();
 }
+
+if (_.includes(process.argv, '--seed')) {
+  recipeSeedDB();
+}
+
+if (_.includes(process.argv, '--big-seed')) {
+  recipeBigSeedDB();
+}
+
+// =======================
+// App Setup
+// =======================
+
+const app = next({ dir: '.', dev: config.dev });
+const handle = app.getRequestHandler();
+
+const pageRenderRoutes = require('./server-files/routes/pageRenderRoutes');
+const todoApiRoutes = require('./server-files/routes/todoApiRoutes');
+const recipeApiRoutes = require('./server-files/routes/recipeApiRoutes');
+const authRoutes = require('./server-files/routes/authRoutes');
 
 app.prepare().then(() => {
   const server = express();
-  server.use("/static", express.static("./static"));
+  server.use('/static', express.static('./static'));
   server.use(bodyParser.json());
+  server.use(cookieParser());
   server.use(compression());
+  server.use(
+    session({
+      secret: config.sessionSecret,
+      saveUninitialized: true,
+      resave: true,
+      store: new MongoStore({ mongooseConnection: db }),
+    }),
+  );
 
-  server.get("/", (req, res) => {
-    console.log("homepage");
-    app.render(req, res, "/index", req.query);
-  });
+  // =======================
+  // Portfolio Render Routes
+  // =======================
 
-  server.get("/todo/:id", (req, res) => {
-    TodoState.findOne({ _id: req.params.id }, (error, initialState) => {
-      if (error) {
-        console.log("State not found, making new state and redirecting");
-        TodoState.create(generateNewTodoList(), (error, newState) => {
-          if (error) {
-            console.log(error);
-            res.send("Something Went Wrong");
-          } else {
-            console.log("new state made at ", newState._id);
-            res.redirect(`/todo/${newState._id}`);
-          }
-        });
-      } else {
-        console.log("todo list found");
-        const mergedQuery = Object.assign({}, req.query, { initialState });
-        return app.render(req, res, "/todo", mergedQuery);
-      }
-    });
-  });
+  server.get('/', pageRenderRoutes.renderPortfolioHomePage(app));
 
-  server.put("/todo/:id", (req, res) => {
-    console.log(req.params);
-    var id = req.params.id;
-    var newState = req.body.newState;
-    console.log("id", id);
-    // console.log("new state", newState)
+  // =======================
+  // Todo Routes
+  // =======================
 
-    TodoState.findByIdAndUpdate(id, newState, (error, updatedState) => {
-      if (error) {
-        console.log(error);
-        res.send("we got it but something went wrong");
-      } else {
-        res.send("we got it and it was updated!!!");
-        // console.log("updatedState",updatedState)
-      }
-    });
-  });
+  server.get('/todo/:id', pageRenderRoutes.renderTodoList(app));
 
-  server.get("*", (req, res) => {
-    return handle(req, res);
-  });
+  server.put('/todo/:id', todoApiRoutes.updatedRecipe);
 
-  server.listen(port, err => {
+  // =======================
+  // Recipe Routes
+  // =======================
+
+  server.get('/recipe', pageRenderRoutes.renderHomePage(app));
+
+  // Recipe API Routes
+
+  server.get('/recipe/index/:pageIndex', recipeApiRoutes.pageRoute);
+
+  server.post('/recipe/new', recipeApiRoutes.newRecipe);
+
+  server.get('/recipe/:id', recipeApiRoutes.getRecipe);
+
+  server.post('/recipe/update', recipeApiRoutes.updateRecipe);
+
+  server.delete('/recipe/delete/:id', recipeApiRoutes.deleteRecipe);
+
+  // =======================
+  // Portfolio Render Routes
+  // =======================
+
+  server.post('/recipe/auth/login', authRoutes.login);
+
+  server.post('/recipe/auth/logout', authRoutes.logout);
+
+  // =======================
+  // Redirect Routes
+  // =======================
+
+  server.get('*', (req, res) => handle(req, res));
+
+  // =======================
+  // Listener
+  // =======================
+
+  server.listen(config.port, err => {
     if (err) throw err;
-    console.log("> Ready on http://localhost:3000");
+    console.log('> Ready on http://localhost:3000');
   });
 });

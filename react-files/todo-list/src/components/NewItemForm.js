@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet('NewItemForm', {
+const styleSheet = {
   container: {
     margin: 'auto',
     paddingBottom: '16px',
@@ -17,7 +17,7 @@ const styleSheet = createStyleSheet('NewItemForm', {
   typeItem: {
     flexGrow: 1,
   },
-});
+};
 
 class NewItemForm extends Component {
   constructor(props) {
