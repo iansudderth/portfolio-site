@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import _ from "lodash";
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import ChevronRight from 'material-ui-icons/ChevronRight';
@@ -19,7 +19,7 @@ import {
 import HeaderMenu from './HeaderMenu';
 import EditableTextArea from './EditableTextArea';
 
-const styleSheet = createStyleSheet('Header', {
+const styleSheet = {
   titleContainer: {
     padding: 16,
     display: 'flex',
@@ -38,9 +38,9 @@ const styleSheet = createStyleSheet('Header', {
   crumbContainer: {
     padding: 16,
   },
-});
+};
 
-const ListHeader = (props) => {
+const ListHeader = props => {
   const classes = props.classes;
   const currentItemColor = props.items[props.baseItem].color;
   const incompleteColor = primaryColorParser(currentItemColor);
@@ -49,9 +49,7 @@ const ListHeader = (props) => {
   const completeAccentColor = fadedAccentColorParser(currentItemColor);
   const incompleteAccentTextColor = accentTextColorParser(currentItemColor);
   const complete =
-  props.baseItem === 'root'
-    ? false
-    : props.items[props.baseItem].complete;
+    props.baseItem === 'root' ? false : props.items[props.baseItem].complete;
 
   const completeColor = fadedColorParser(currentItemColor);
   const textColor = complete ? '#000000' : incompleteTextColor;
@@ -81,18 +79,16 @@ const ListHeader = (props) => {
         className={props.classes.crumbContainer}
         style={{ color: textColor }}
       >
-        {trail.map((item, index) => (
+        {trail.map((item, index) =>
           <span
             key={`breadcrumb-${item}`}
             className={props.classes.crumb}
             onClick={props.changeBaseComposer(item)}
           >
             {props.items[item].content}
-            {index < trail.length - 1
-              ? <ChevronRight />
-              : ''}{' '}
-          </span>
-        ))}
+            {index < trail.length - 1 ? <ChevronRight /> : ''}{' '}
+          </span>,
+        )}
       </Typography>
     );
   };
@@ -109,10 +105,10 @@ const ListHeader = (props) => {
         {props.baseItem === 'root'
           ? <IconButton />
           : <Checkbox
-            checked={complete}
-            onClick={props.completeItemComposer(props.baseItem)}
-            style={{ color: textColor }}
-          />}
+              checked={complete}
+              onClick={props.completeItemComposer(props.baseItem)}
+              style={{ color: textColor }}
+            />}
         <div className={classes.titleText}>
           <EditableTextArea
             primary={headerText}

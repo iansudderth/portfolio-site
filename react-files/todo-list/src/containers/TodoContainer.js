@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Card from 'material-ui/Card';
 // import _ from 'lodash'
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import List from '../components/List';
 import {
   newItem,
@@ -19,7 +19,7 @@ import {
 // import style from "../components/ListItem/style.css";
 import ListHeader from '../components/ListHeader';
 
-const styleSheet = createStyleSheet('CardContainer', {
+const styleSheet = {
   card: {
     margin: 0,
   },
@@ -28,7 +28,7 @@ const styleSheet = createStyleSheet('CardContainer', {
       margin: 16,
     },
   },
-});
+};
 
 class TodoContainer extends Component {
   constructor(props) {
@@ -63,44 +63,44 @@ class TodoContainer extends Component {
 
   changeBaseComposer(id) {
     const changeBaseItem = this.props.changeBaseItem;
-    return function () {
+    return function() {
       changeBaseItem(id);
     };
   }
 
   deleteItemComposer(id) {
     const deleteItemDispatch = this.props.deleteItem;
-    return function () {
+    return function() {
       deleteItemDispatch(id);
     };
   }
 
   completeItemComposer(id) {
     const completeItemDispatch = this.props.completeItem;
-    return function () {
+    return function() {
       completeItemDispatch(id);
     };
   }
 
   reorderItemComposer(id, oldIndex, newIndex) {
     const reorderItemDispatch = this.props.reorderItem;
-    return function () {
+    return function() {
       reorderItemDispatch(id, oldIndex, newIndex);
     };
   }
 
   generateComplete() {
-    const completeCount = this.props.items[this.props.baseItem]
-      .completeChildren.length;
+    const completeCount = this.props.items[this.props.baseItem].completeChildren
+      .length;
     const totalCount =
-   this.props.items[this.props.baseItem].incompleteChildren.length +
-   completeCount;
+      this.props.items[this.props.baseItem].incompleteChildren.length +
+      completeCount;
     return `( ${completeCount} / ${totalCount} Complete )`;
   }
 
   changeColorComposer(id, color) {
     const changeColorDispatch = this.props.changeColor;
-    return function () {
+    return function() {
       changeColorDispatch(id, color);
     };
   }
@@ -117,7 +117,6 @@ class TodoContainer extends Component {
     };
     this.props.updateData(id, { id, newState });
   }
-
 
   render() {
     const currentItem = this.props.items[this.props.baseItem];

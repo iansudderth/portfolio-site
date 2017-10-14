@@ -2,20 +2,19 @@ import React from 'react';
 // import style from "./style.css";
 import PropTypes from 'prop-types';
 // import _ from 'lodash';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import IncompleteList from './IncompleteList';
 import CompleteList from './CompleteList';
 
-const styleSheet = createStyleSheet('List', {
+const styleSheet = {
   container: {},
-});
+};
 
-const List = (props) => {
+const List = props => {
   const itemsList = props.items;
   const baseItem = props.baseItem;
   let completeListItems = itemsList[baseItem].completeChildren;
   let incompleteListItems = itemsList[baseItem].incompleteChildren;
-
 
   function populateList(listArr) {
     return listArr.map(listID => itemsList[listID]);
