@@ -21,7 +21,8 @@
     "react/jsx-indent-props": [0],
     "no-underscore-dangle": [0],
     "no-console":"off",
-    "consistent-return":"warn"
+    "consistent-return":"warn",
+    "import/prefer-default-export":[0]
   }
 }
 // {
