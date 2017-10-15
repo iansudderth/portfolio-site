@@ -96,20 +96,18 @@ export function updateError() {
   };
 }
 
-
 export const UPDATE_DATA = 'UPDATE_DATA';
 export function updateData(id, newState) {
-  return function (dispatch) {
+  return dispatch => {
     dispatch(updateProgress());
 
     return axios.put(`/todo/${id}`, newState).then(
-      (response) => {
+      response => {
         dispatch(updateComplete());
       },
-      (error) => {
+      error => {
         dispatch(updateError());
       },
     );
   };
 }
-

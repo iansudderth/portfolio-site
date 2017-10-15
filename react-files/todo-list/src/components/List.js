@@ -23,10 +23,10 @@ const List = props => {
   completeListItems = populateList(completeListItems);
   incompleteListItems = populateList(incompleteListItems);
 
-  const classes = props.classes;
+  const { container } = props.classes;
 
   return (
-    <div className={classes.container}>
+    <div className={container}>
       <IncompleteList
         items={incompleteListItems}
         parentID={props.baseItem}
@@ -54,15 +54,16 @@ const List = props => {
 };
 
 List.propTypes = {
-  items: PropTypes.object,
-  baseItem: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  updateItem: PropTypes.func,
-  changeColorComposer: PropTypes.func,
-  reorderItemComposer: PropTypes.func,
-  completeItemComposer: PropTypes.func,
-  deleteItemComposer: PropTypes.func,
-  changeBaseComposer: PropTypes.func,
-  classes: PropTypes.object,
+  items: PropTypes.objectOf(PropTypes.object).isRequired,
+  baseItem: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
+  updateItem: PropTypes.func.isRequired,
+  changeColorComposer: PropTypes.func.isRequired,
+  reorderItemComposer: PropTypes.func.isRequired,
+  completeItemComposer: PropTypes.func.isRequired,
+  deleteItemComposer: PropTypes.func.isRequired,
+  changeBaseComposer: PropTypes.func.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styleSheet)(List);

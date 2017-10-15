@@ -21,9 +21,9 @@ const styleSheet = {
   },
 };
 
-const SortableList = SortableContainer(props =>
+const SortableList = SortableContainer(props => (
   <List className={props.classForList}>
-    {props.items.map((value, index) =>
+    {props.items.map((value, index) => (
       <SortableListItem
         key={`item-${value.id}`}
         index={index}
@@ -35,12 +35,12 @@ const SortableList = SortableContainer(props =>
         bgColorComposer={props.bgColorComposer}
         textColorComposer={props.textColorComposer}
         updateItem={props.updateItem}
-      />,
-    )}
-  </List>,
-);
+      />
+    ))}
+  </List>
+));
 
-const SortableListItem = SortableElement(props =>
+const SortableListItem = SortableElement(props => (
   <ListItem
     value={props.value}
     changeBaseComposer={props.changeBaseComposer}
@@ -50,8 +50,8 @@ const SortableListItem = SortableElement(props =>
     itemColor={props.bgColorComposer(props.value.color)}
     textColor={props.textColorComposer(props.value.color, props.value.complete)}
     updateItem={props.updateItem}
-  />,
-);
+  />
+));
 
 const IncompleteList = props => {
   const classes = props.classes;
@@ -81,15 +81,16 @@ const IncompleteList = props => {
 };
 
 IncompleteList.propTypes = {
-  classes: PropTypes.object,
-  updateItem: PropTypes.func,
-  changeColorComposer: PropTypes.func,
-  completeItemComposer: PropTypes.func,
-  deleteItemComposer: PropTypes.func,
-  changeBaseComposer: PropTypes.func,
-  items: PropTypes.array,
-  reorderItemComposer: PropTypes.func,
-  parentID: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  updateItem: PropTypes.func.isRequired,
+  changeColorComposer: PropTypes.func.isRequired,
+  completeItemComposer: PropTypes.func.isRequired,
+  deleteItemComposer: PropTypes.func.isRequired,
+  changeBaseComposer: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  reorderItemComposer: PropTypes.func.isRequired,
+  parentID: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
 };
 
 export default withStyles(styleSheet)(IncompleteList);

@@ -41,7 +41,7 @@ const styleSheet = {
 };
 
 const ListHeader = props => {
-  const classes = props.classes;
+  const { titleContainer, titleText, crumb, crumbContainer } = props.classes;
   const currentItemColor = props.items[props.baseItem].color;
   const incompleteColor = primaryColorParser(currentItemColor);
   const incompleteTextColor = textColorParser(currentItemColor);
@@ -76,19 +76,20 @@ const ListHeader = props => {
     return (
       <Typography
         type={'body1'}
-        className={props.classes.crumbContainer}
+        className={crumbContainer}
         style={{ color: textColor }}
       >
-        {trail.map((item, index) =>
+        {trail.map((item, index) => (
           <span
             key={`breadcrumb-${item}`}
-            className={props.classes.crumb}
+            className={crumb}
             onClick={props.changeBaseComposer(item)}
+            role="link"
           >
             {props.items[item].content}
             {index < trail.length - 1 ? <ChevronRight /> : ''}{' '}
-          </span>,
-        )}
+          </span>
+        ))}
       </Typography>
     );
   };
@@ -101,15 +102,17 @@ const ListHeader = props => {
         transition: '.5s',
       }}
     >
-      <div className={classes.titleContainer}>
-        {props.baseItem === 'root'
-          ? <IconButton />
-          : <Checkbox
-              checked={complete}
-              onClick={props.completeItemComposer(props.baseItem)}
-              style={{ color: textColor }}
-            />}
-        <div className={classes.titleText}>
+      <div className={titleContainer}>
+        {props.baseItem === 'root' ? (
+          <IconButton />
+        ) : (
+          <Checkbox
+            checked={complete}
+            onClick={props.completeItemComposer(props.baseItem)}
+            style={{ color: textColor }}
+          />
+        )}
+        <div className={titleText}>
           <EditableTextArea
             primary={headerText}
             secondary={props.counterText}
@@ -142,14 +145,16 @@ const ListHeader = props => {
 };
 
 ListHeader.propTypes = {
-  newItemAction: PropTypes.func,
-  changeColorComposer: PropTypes.func,
-  baseItem: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  updateItem: PropTypes.func,
-  counterText: PropTypes.string,
-  completeItemComposer: PropTypes.func,
-  items: PropTypes.object,
-  classes: PropTypes.object,
+  newItemAction: PropTypes.func.isRequired,
+  changeColorComposer: PropTypes.func.isRequired,
+  changeBaseComposer: PropTypes.func.isRequired,
+  baseItem: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
+  updateItem: PropTypes.func.isRequired,
+  counterText: PropTypes.string.isRequired,
+  completeItemComposer: PropTypes.func.isRequired,
+  items: PropTypes.objectOf(PropTypes.object).isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styleSheet)(ListHeader);

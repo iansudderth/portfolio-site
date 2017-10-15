@@ -44,7 +44,7 @@ function colorParserComposer(modifier) {
     grey,
   };
 
-  return function (colorText) {
+  return colorText => {
     if (colors.hasOwnProperty(colorText)) {
       return colors[colorText][modifier];
     }
@@ -116,7 +116,7 @@ export function accentTextColorParser(colorText) {
   return '#000000';
 }
 
-export const rawColorParser = (colorText) => {
+export const rawColorParser = colorText => {
   const colors = {
     red,
     pink,

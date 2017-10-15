@@ -31,9 +31,13 @@ const NetworkProgress = props => {
 };
 
 NetworkProgress.propTypes = {
-  network: PropTypes.string,
+  network: PropTypes.string.isRequired,
   textColor: PropTypes.string,
-  updateData: PropTypes.func,
+  updateData: PropTypes.func.isRequired,
+};
+
+NetworkProgress.defaultProps = {
+  textColor: 'black',
 };
 
 function mapStateToProps({ network }) {

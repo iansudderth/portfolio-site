@@ -36,92 +36,83 @@ class TodoContainer extends Component {
     this.state = {
       newItem: '',
     };
-    this.inputUpdate = this.inputUpdate.bind(this);
-    this.newItemAction = this.newItemAction.bind(this);
-    this.changeBaseComposer = this.changeBaseComposer.bind(this);
-    this.completeItemComposer = this.completeItemComposer.bind(this);
-    this.deleteItemComposer = this.deleteItemComposer.bind(this);
-    this.reorderItemComposer = this.reorderItemComposer.bind(this);
-    this.generateComplete = this.generateComplete.bind(this);
-    this.changeColorComposer = this.changeColorComposer.bind(this);
-    this.updateItemDispatch = this.updateItemDispatch.bind(this);
-    this.updateDataDispatch = this.updateDataDispatch.bind(this);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     this.updateDataDispatch();
-  }
+  };
 
-  inputUpdate(event) {
+  inputUpdate = event => {
     this.setState({ newItem: event.target.value });
-  }
+  };
 
-  newItemAction(content) {
+  newItemAction = content => {
     this.props.newItem(content, this.props.baseItem);
     this.setState({ newItem: '' }, () => {});
-  }
+  };
 
-  changeBaseComposer(id) {
-    const changeBaseItem = this.props.changeBaseItem;
-    return function() {
-      changeBaseItem(id);
+  changeBaseComposer = id => {
+    const changeBaseItemDispatch = this.props.changeBaseItem;
+    return () => {
+      changeBaseItemDispatch(id);
     };
-  }
+  };
 
-  deleteItemComposer(id) {
+  deleteItemComposer = id => {
     const deleteItemDispatch = this.props.deleteItem;
-    return function() {
+    return () => {
       deleteItemDispatch(id);
     };
-  }
+  };
 
-  completeItemComposer(id) {
+  completeItemComposer = id => {
     const completeItemDispatch = this.props.completeItem;
-    return function() {
+    return () => {
       completeItemDispatch(id);
     };
-  }
+  };
 
-  reorderItemComposer(id, oldIndex, newIndex) {
+  reorderItemComposer = (id, oldIndex, newIndex) => {
     const reorderItemDispatch = this.props.reorderItem;
-    return function() {
+    return () => {
       reorderItemDispatch(id, oldIndex, newIndex);
     };
-  }
+  };
 
-  generateComplete() {
+  generateComplete = () => {
     const completeCount = this.props.items[this.props.baseItem].completeChildren
       .length;
     const totalCount =
       this.props.items[this.props.baseItem].incompleteChildren.length +
       completeCount;
     return `( ${completeCount} / ${totalCount} Complete )`;
-  }
+  };
 
-  changeColorComposer(id, color) {
+  changeColorComposer = (id, color) => {
     const changeColorDispatch = this.props.changeColor;
-    return function() {
+    return () => {
       changeColorDispatch(id, color);
     };
-  }
+  };
 
-  updateItemDispatch(id, newText) {
+  updateItemDispatch = (id, newText) => {
     this.props.updateItem(id, newText);
-  }
+  };
 
-  updateDataDispatch() {
+  updateDataDispatch = () => {
     const id = this.props.listID;
     const newState = {
       items: this.props.items,
       baseItem: this.props.baseItem,
     };
     this.props.updateData(id, { id, newState });
-  }
+  };
 
   render() {
+    const { card } = this.props.classes;
     const currentItem = this.props.items[this.props.baseItem];
     return (
-      <Card className={this.props.classes.card}>
+      <Card className={card}>
         <ListHeader
           baseItem={this.props.baseItem}
           baseItemText={currentItem.content}
@@ -151,18 +142,19 @@ class TodoContainer extends Component {
 }
 
 TodoContainer.propTypes = {
-  baseItem: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  items: PropTypes.object,
-  classes: PropTypes.object,
-  listID: PropTypes.string,
-  newItem: PropTypes.func,
-  changeBaseItem: PropTypes.func,
-  completeItem: PropTypes.func,
-  deleteItem: PropTypes.func,
-  reorderItem: PropTypes.func,
-  changeColor: PropTypes.func,
-  updateItem: PropTypes.func,
-  updateData: PropTypes.func,
+  baseItem: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    .isRequired,
+  items: PropTypes.objectOf(PropTypes.object).isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  listID: PropTypes.string.isRequired,
+  newItem: PropTypes.func.isRequired,
+  changeBaseItem: PropTypes.func.isRequired,
+  completeItem: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
+  reorderItem: PropTypes.func.isRequired,
+  changeColor: PropTypes.func.isRequired,
+  updateItem: PropTypes.func.isRequired,
+  updateData: PropTypes.func.isRequired,
 };
 
 function mapStateToProps({ items, baseItem }) {

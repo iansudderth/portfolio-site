@@ -15,31 +15,27 @@ class HeaderMenu extends Component {
       open: false,
       anchorEl: undefined,
     };
-
-    this.openMenu = this.openMenu.bind(this);
-    this.closeMenu = this.closeMenu.bind(this);
-    this.colorItemClickHandler = this.colorItemClickHandler.bind(this);
   }
 
-  openMenu(event) {
+  openMenu = event => {
     this.setState({ open: true, anchorEl: event.currentTarget });
-  }
+  };
 
-  closeMenu() {
+  closeMenu = () => {
     this.setState({ open: false });
-  }
+  };
 
-  colorItemClickHandler(colorName) {
+  colorItemClickHandler = colorName => {
     const close = this.closeMenu;
     const changeColor = this.props.changeColorComposer(
       this.props.baseItem,
       colorName,
     );
-    return function () {
+    return () => {
       changeColor();
       close();
     };
-  }
+  };
 
   render() {
     return (
@@ -72,10 +68,14 @@ class HeaderMenu extends Component {
 }
 
 HeaderMenu.propTypes = {
-  baseItem: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  baseItem: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
   textColor: PropTypes.string,
-  bgColor: PropTypes.string,
-  changeColorComposer: PropTypes.func,
+  changeColorComposer: PropTypes.func.isRequired,
+};
+
+HeaderMenu.defaultProps = {
+  textColor: 'black',
 };
 
 export default HeaderMenu;

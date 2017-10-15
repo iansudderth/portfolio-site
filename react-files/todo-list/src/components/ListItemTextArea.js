@@ -12,16 +12,9 @@ class ListItemTextArea extends Component {
       editMode: false,
       editText: props.rawText,
     };
-
-    this.TextContainer = this.TextContainer.bind(this);
-    this.doubleClickHandler = this.doubleClickHandler.bind(this);
-    this.EditItem = this.EditItem.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
-    this.nonEditItem = this.nonEditItem.bind(this);
   }
 
-  nonEditItem(props) {
+  nonEditItem = props => {
     const lineStyle = this.props.complete
       ? { textDecoration: 'line-through' }
       : {};
@@ -51,9 +44,9 @@ class ListItemTextArea extends Component {
         />
       </Holdable>
     );
-  }
+  };
 
-  EditItem() {
+  EditItem = () => {
     return (
       <form onSubmit={this.handleBlur} style={{ width: '100%' }}>
         <TextField
@@ -70,19 +63,19 @@ class ListItemTextArea extends Component {
         />
       </form>
     );
-  }
+  };
 
-  handleChange(event) {
+  handleChange = event => {
     this.setState({ editText: event.target.value });
-  }
+  };
 
-  handleBlur(event) {
+  handleBlur = event => {
     event.preventDefault();
     this.props.updateItem(this.props.id, this.state.editText);
     this.setState({ editMode: false });
-  }
+  };
 
-  TextContainer(props) {
+  TextContainer = props => {
     const NonEditItem = this.nonEditItem;
     const EditItem = this.EditItem;
     if (props.editMode) {
@@ -100,11 +93,11 @@ class ListItemTextArea extends Component {
         }}
       />
     );
-  }
+  };
 
-  doubleClickHandler() {
+  doubleClickHandler = () => {
     this.setState({ editMode: true });
-  }
+  };
 
   render() {
     const TextContainer = this.TextContainer;
@@ -122,12 +115,19 @@ class ListItemTextArea extends Component {
 
 ListItemTextArea.propTypes = {
   textColor: PropTypes.string,
-  primary: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  secondary: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  updateItem: PropTypes.func,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  primary: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  secondary: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    .isRequired,
+  updateItem: PropTypes.func.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   complete: PropTypes.bool,
   rawText: PropTypes.string,
+};
+
+ListItemTextArea.defaultProps = {
+  textColor: 'black',
+  complete: false,
+  rawText: '',
 };
 
 export default ListItemTextArea;
