@@ -13,7 +13,7 @@ const config = require('../config');
 function pageRoute(req, res) {
   const pageIndex = parseInt(req.params.pageIndex, 10);
   generatePages(pageIndex, pageSize, pages => {
-    console.log(pages);
+    // console.log(pages);
     res.json({ pages });
   });
 }
