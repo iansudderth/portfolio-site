@@ -5801,7 +5801,7 @@ theming@^1.1.0:
     is-function "^1.0.1"
     is-plain-object "^2.0.1"
     prop-types "^15.5.8"
-    react "^15.5.4"
+
 
 thenify-all@^1.0.0:
   version "1.6.0"
