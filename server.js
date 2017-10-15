@@ -29,9 +29,14 @@ const recipeSeedDB = require('./server-files/seeds/recipeSeed');
 
 if (_.includes(process.argv, '--seed')) {
   todoSeedDB();
+  recipeSeedDB();
 }
 
-if (_.includes(process.argv, '--seed')) {
+if (_.includes(process.argv, '--todo-seed')) {
+  todoSeedDB();
+}
+
+if (_.includes(process.argv, '--recipe-seed')) {
   recipeSeedDB();
 }
 
