@@ -37,7 +37,7 @@ function newRecipe(req, res) {
             .hash(password, config.saltingRounds)
             .then(hash => {
               const auth = new RecipeAuth();
-              auth.recipeId = newRecipe._id;
+              auth.recipeId = newRecipeDB._id;
               auth.hash = hash;
               return auth.save();
             })
