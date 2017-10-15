@@ -47,56 +47,65 @@ const styleSheet = {
   nameText: {
     color: 'white',
     fontSize: '2rem',
+    cursor: 'pointer',
   },
 };
 
 const Navbar = props => {
-  const classes = props.classes;
-  const aboutActive =
-    props.activePage === 'about' ? classes.active : classes.inactive;
-  const portfolioActive =
-    props.activePage === 'portfolio' ? classes.active : classes.inactive;
-  const connectActive =
-    props.activePage === 'connect' ? classes.active : classes.inactive;
+  const {
+    active,
+    inactive,
+    flex,
+    nameText,
+    flexGroup,
+    navFont,
+    iconGroup,
+  } = props.classes;
+  const aboutActive = props.activePage === 'about' ? active : inactive;
+  const portfolioActive = props.activePage === 'portfolio' ? active : inactive;
+  const connectActive = props.activePage === 'connect' ? active : inactive;
 
-  const changePageComposer = page =>
-    function() {
-      props.changePage(page);
-    };
+  const changePageComposer = page => () => {
+    props.changePage(page);
+  };
 
   return (
     <div>
       <AppBar>
-        <Toolbar className={classes.flex}>
+        <Toolbar className={flex}>
           <div>
-            <Typography type="title" className={classes.nameText}>
+            <Typography
+              type="title"
+              className={nameText}
+              onClick={changePageComposer('about')}
+            >
               {'Ian Sudderth'}
             </Typography>
           </div>
-          <div className={classes.flexGroup}>
+          <div className={flexGroup}>
             <Typography
-              className={`${classes.navFont} ${aboutActive}`}
+              className={`${navFont} ${aboutActive}`}
               type="title"
               onClick={changePageComposer('about')}
             >
               {'About'}
             </Typography>
             <Typography
-              className={`${classes.navFont} ${portfolioActive}`}
+              className={`${navFont} ${portfolioActive}`}
               type="title"
               onClick={changePageComposer('portfolio')}
             >
               {'Portfolio'}
             </Typography>
             <Typography
-              className={`${classes.navFont} ${connectActive}`}
+              className={`${navFont} ${connectActive}`}
               type="title"
               onClick={changePageComposer('connect')}
             >
               {'Connect'}
             </Typography>
           </div>
-          <div className={classes.iconGroup}>
+          <div className={iconGroup}>
             <NavbarDrawer
               activePage={props.activePage}
               changePageComposer={changePageComposer}
@@ -109,9 +118,13 @@ const Navbar = props => {
 };
 
 Navbar.propTypes = {
-  classes: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   activePage: PropTypes.string,
-  changePage: PropTypes.func,
+  changePage: PropTypes.func.isRequired,
+};
+
+Navbar.defaultProps = {
+  activePage: 'About',
 };
 
 export default withStyles(styleSheet)(Navbar);
