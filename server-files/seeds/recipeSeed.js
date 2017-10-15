@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 const Recipe = require('../schema/recipe/Recipe');
 const RecipeAuth = require('../schema/recipe/RecipeAuth');
 const _ = require('lodash');
+const bluebird = require('bluebird');
+
+// mongoose.Promise = bluebird;
+// const dburl = process.env.DATABASEURL || 'mongodb://localhost/recipe';
+// mongoose.connect(dburl);
+// const db = mongoose.connection;
 
 const potatoSalad = {
   password: false,
@@ -392,5 +398,7 @@ function seedDB() {
       console.log(error);
     });
 }
+
+seedDB();
 
 module.exports = seedDB;

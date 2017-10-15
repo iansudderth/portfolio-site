@@ -2,7 +2,9 @@ import axios from 'axios';
 import _ from 'lodash';
 import { requestRecipe } from './index';
 import { enforceDelay } from './actionHelperFunctions';
-import { delayTime } from '../config';
+import config from '../config';
+
+const { delayTime } = config;
 
 // Action dispactchers to control to opening and closing of SaveDialog
 // Sould not be called directly, only through thunks

@@ -1,7 +1,9 @@
 import axios from 'axios';
 import _ from 'lodash';
 import { enforceDelay } from './actionHelperFunctions';
-import { delayTime } from '../config';
+import config from '../config';
+
+const { delayTime } = config;
 
 // Actions for opening and closing UpdateDialog
 // These are not to be called directly, only via thunks

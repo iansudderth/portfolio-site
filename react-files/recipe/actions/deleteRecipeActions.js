@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import axios from 'axios';
 import { enforceDelay } from './actionHelperFunctions';
-import { delayTime } from '../config';
+import config from '../config';
 
+const { delayTime } = config;
 // Action dispatchers for opening and closing DeleteDialog
 // Not to be called directly, only through thunks
 
