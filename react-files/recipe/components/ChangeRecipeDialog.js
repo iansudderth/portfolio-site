@@ -4,7 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Dialog, { DialogTitle } from 'material-ui/Dialog';
-import List, { ListItem, ListItemAvatar, ListItemText } from 'material-ui/List';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 import Button from 'material-ui/Button';
 import { lightBlue } from 'material-ui/colors';
 import {
@@ -36,6 +36,9 @@ const styles = {
     padding: 12,
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  listTitle: {
+    textAlign: 'center',
   },
 };
 
@@ -86,6 +89,7 @@ class ChangeRecipeDialog extends Component {
       listText,
       innerDialog,
       buttonsContainer,
+      listTitle,
     } = this.props.classes;
     const prevDisabled = this.props.recipeList.prev
       ? { disabled: false }
@@ -96,7 +100,7 @@ class ChangeRecipeDialog extends Component {
     return (
       <Dialog open={this.props.open} onRequestClose={this.props.handleClose}>
         <div className={innerDialog}>
-          <DialogTitle>Choose a Recipe </DialogTitle>
+          <DialogTitle className={listTitle}>Choose a Recipe </DialogTitle>
           <div>
             <List>
               <ExpandWrapper>
@@ -150,7 +154,7 @@ function mapDispatchToProps(dispatch) {
       requestRecipe,
       requestUpdateRecipeList,
     },
-    dispatch
+    dispatch,
   );
 }
 
@@ -159,5 +163,5 @@ function mapStateToProps({ recipeList }) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles)(ChangeRecipeDialog)
+  withStyles(styles)(ChangeRecipeDialog),
 );

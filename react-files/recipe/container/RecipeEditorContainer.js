@@ -29,7 +29,9 @@ class RecipeEditorContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      animateOnMount: false,
+    };
   }
 
   generateSections = () => {
@@ -55,7 +57,10 @@ class RecipeEditorContainer extends Component {
       <div className={container}>
         <Card>
           <EditHeader />
-          <EnterExitWrapper enterSpring={false}>
+          <EnterExitWrapper
+            enterSpring={false}
+            runOnMount={this.state.animateOnMount}
+          >
             {this.generateSections()}
           </EnterExitWrapper>
           <div className={buttonContainer}>
@@ -83,5 +88,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default withStyles(styles)(
-  connect(mapStateToProps, mapDispatchToProps)(RecipeEditorContainer)
+  connect(mapStateToProps, mapDispatchToProps)(RecipeEditorContainer),
 );
