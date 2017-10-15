@@ -1,7 +1,18 @@
 import TodoDialog from './PortfolioItemDialogs/TodoDialog';
 import SiteDialog from './PortfolioItemDialogs/SiteDialog';
+import RecipeDialog from './PortfolioItemDialogs/RecipeDialog';
 
 const portfolioItems = [
+  {
+    id: 'recipe-full',
+    title: 'Parametric Recipes App',
+    description:
+      'A React app for making recipes that automatically adjust ingredient proportions.',
+    image: '/static/recipe-full-screenshow.jpg',
+    dialog: RecipeDialog,
+    link: '/recipe',
+    github: 'https://github.com/iansudderth/parametric-recipes',
+  },
   {
     id: 'todo',
     title: 'Recursive To-do List',

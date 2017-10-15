@@ -46,7 +46,7 @@ const AboutPage = props => {
               <Typography type="headline">About Me</Typography>
               <Typography type="body1" className={bodyText}>
                 {
-                  'My name is Ian Sudderth and I am a Full-Stack developer, with more of an emphasis on the Front-End part of the equation.  I am thoroughly proficient in HTML, CSS, JavaScript, React, Redux, SASS, Node, Express, MongoDB, SQL, and Python.  I also have experience with design tools like Photoshop and Illustrator.  I am currently based in New York City.'
+                  'My name is Ian Sudderth and I am a Full-Stack developer and Educator.  I am thoroughly proficient in HTML, CSS, JavaScript, React, Redux, SASS, Node, Express, MongoDB, SQL, and Python.  I also have experience with design tools like Photoshop and Illustrator.  I am currently based in New York City.'
                 }
               </Typography>
               <Typography type="body1" className={bodyText}>

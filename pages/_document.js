@@ -8,7 +8,7 @@ class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
-          <title>My page</title>
+          <title>{"Ian Sudderth's Portfolio"}</title>
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
@@ -62,11 +62,11 @@ MyDocument.getInitialProps = ctx => {
 
   // Get the context to collected side effects.
   const context = getContext();
-  const page = ctx.renderPage(Component => props =>
+  const page = ctx.renderPage(Component => props => (
     <JssProvider registry={context.sheetsRegistry} jss={context.jss}>
       <Component {...props} />
-    </JssProvider>,
-  );
+    </JssProvider>
+  ));
 
   return {
     ...page,
