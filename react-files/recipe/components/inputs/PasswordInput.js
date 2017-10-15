@@ -24,6 +24,15 @@ const styles = {
   errorText: {
     color: 'red',
   },
+  '@media (max-width: 500px)': {
+    fieldContainer: {
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+    },
+    passwordField: {
+      paddingRight: 16,
+    },
+  },
 };
 
 const invalidPassword =

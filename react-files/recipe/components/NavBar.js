@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { requestUpdateRecipeList, newRecipe, reset } from '../actions';
 import { withStyles } from 'material-ui/styles';
 import { red } from 'material-ui/colors';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import { requestUpdateRecipeList, newRecipe, reset } from '../actions';
 import ChangeRecipeDialog from './ChangeRecipeDialog';
 
 const styles = {
@@ -25,6 +25,11 @@ const styles = {
   },
   changeRecipeButton: {
     color: 'white',
+  },
+  buttonsContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-end',
   },
 };
 
@@ -51,7 +56,13 @@ class NavBar extends Component {
   };
 
   render() {
-    const { navBar, navText, toolBar, changeRecipeButton } = this.props.classes;
+    const {
+      navBar,
+      navText,
+      toolBar,
+      changeRecipeButton,
+      buttonsContainer,
+    } = this.props.classes;
     return (
       <AppBar position={'static'} className={navBar}>
         <Toolbar className={toolBar}>
@@ -62,7 +73,7 @@ class NavBar extends Component {
           >
             {'Parametric Recipes'}
           </Typography>
-          <div>
+          <div className={buttonsContainer}>
             <Button
               className={changeRecipeButton}
               onClick={this.props.newRecipe}
@@ -89,7 +100,7 @@ class NavBar extends Component {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     { requestUpdateRecipeList, newRecipe, reset },
-    dispatch
+    dispatch,
   );
 }
 
