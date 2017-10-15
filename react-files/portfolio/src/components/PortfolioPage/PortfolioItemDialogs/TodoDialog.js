@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { DialogActions } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
 
 const styleSheet = {
   container: {
@@ -12,10 +10,10 @@ const styleSheet = {
 };
 
 const TodoDialog = props => {
-  const classes = props.classes;
+  const { container } = props.classes;
 
   return (
-    <div className={classes.container}>
+    <div className={container}>
       <Typography type="headline">Recursive To-do List</Typography>
       <br />
       <Typography type="body1">
@@ -46,9 +44,7 @@ const TodoDialog = props => {
         }
       </Typography>
       <br />
-      <Typography type="headline">
-        {'Libraries and Frameworks Used'}
-      </Typography>
+      <Typography type="headline">{'Libraries and Frameworks Used'}</Typography>
       <Typography type="subheading">
         <a href="http://expressjs.com/">Express</a>
         <br />
@@ -77,7 +73,7 @@ const TodoDialog = props => {
 };
 
 TodoDialog.propTypes = {
-  classes: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styleSheet)(TodoDialog);
