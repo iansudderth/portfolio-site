@@ -13,7 +13,7 @@ const config = require('../config');
 function pageRoute(req, res) {
   const pageIndex = parseInt(req.params.pageIndex, 10);
   generatePages(pageIndex, pageSize, pages => {
-    console.log(pages);
+    // console.log(pages);
     res.json({ pages });
   });
 }
@@ -37,7 +37,7 @@ function newRecipe(req, res) {
             .hash(password, config.saltingRounds)
             .then(hash => {
               const auth = new RecipeAuth();
-              auth.recipeId = newRecipe._id;
+              auth.recipeId = newRecipeDB._id;
               auth.hash = hash;
               return auth.save();
             })

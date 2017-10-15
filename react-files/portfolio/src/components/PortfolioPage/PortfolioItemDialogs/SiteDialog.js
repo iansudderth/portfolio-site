@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { DialogActions } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
 
 const styleSheet = {
@@ -11,10 +10,10 @@ const styleSheet = {
 };
 
 const SiteDialog = props => {
-  const classes = props.classes;
+  const { container } = props.classes;
 
   return (
-    <div className={classes.container}>
+    <div className={container}>
       <Typography type="headline">My Portfolio Site</Typography>
       <br />
       <Typography type="body1">
@@ -29,9 +28,7 @@ const SiteDialog = props => {
         }
       </Typography>
       <br />
-      <Typography type="headline">
-        {'Libraries and Frameworks Used'}
-      </Typography>
+      <Typography type="headline">{'Libraries and Frameworks Used'}</Typography>
       <Typography type="subheading">
         <a href="http://expressjs.com/">Express</a>
         <br />
@@ -47,7 +44,7 @@ const SiteDialog = props => {
 };
 
 SiteDialog.propTypes = {
-  classes: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styleSheet)(SiteDialog);

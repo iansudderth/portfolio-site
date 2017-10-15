@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { indigo, deepOrange, grey } from 'material-ui/colors';
+import { indigo, grey } from 'material-ui/colors';
 import Navbar from './Navbar';
 import AboutPage from './AboutPage/';
 import ConnectPage from './ConnectPage/';
@@ -55,7 +55,6 @@ class Layout extends Component {
       }
     };
 
-    const classes = this.props.classes;
     return (
       <div>
         <Navbar
@@ -71,7 +70,7 @@ class Layout extends Component {
 }
 
 Layout.propTypes = {
-  classes: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styles)(Layout);

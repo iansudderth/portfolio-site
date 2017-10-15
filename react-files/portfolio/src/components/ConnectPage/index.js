@@ -34,15 +34,15 @@ const styleSheet = {
 };
 
 const ConnectPage = props => {
-  const classes = props.classes;
+  const { card, headline, icon, textGroup } = props.classes;
 
   return (
     <Grid container justify="center">
       <Grid item xs={11} sm={10} md={9} lg={8}>
-        <Card className={classes.card}>
-          <Avatar src="/static/email-icon.png" className={classes.icon} />
-          <div className={classes.textGroup}>
-            <Typography type="display1" className={classes.headline}>
+        <Card className={card}>
+          <Avatar src="/static/email-icon.png" className={icon} />
+          <div className={textGroup}>
+            <Typography type="display1" className={headline}>
               {'Email'}
             </Typography>
             <Typography type="headline">
@@ -52,10 +52,10 @@ const ConnectPage = props => {
             </Typography>
           </div>
         </Card>
-        <Card className={classes.card}>
-          <Avatar src="/static/github-icon.png" className={classes.icon} />
-          <div className={classes.textGroup}>
-            <Typography type="display1" className={classes.headline}>
+        <Card className={card}>
+          <Avatar src="/static/github-icon.png" className={icon} />
+          <div className={textGroup}>
+            <Typography type="display1" className={headline}>
               {'GitHub'}
             </Typography>
             <Typography type="headline">
@@ -69,10 +69,10 @@ const ConnectPage = props => {
             </Typography>
           </div>
         </Card>
-        <Card className={classes.card}>
-          <Avatar src="/static/linked-in-icon.png" className={classes.icon} />
-          <div className={classes.textGroup}>
-            <Typography type="display1" className={classes.headline}>
+        <Card className={card}>
+          <Avatar src="/static/linked-in-icon.png" className={icon} />
+          <div className={textGroup}>
+            <Typography type="display1" className={headline}>
               {'LinkedIn'}
             </Typography>
             <Typography type="headline">
@@ -92,7 +92,7 @@ const ConnectPage = props => {
 };
 
 ConnectPage.propTypes = {
-  classes: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styleSheet)(ConnectPage);

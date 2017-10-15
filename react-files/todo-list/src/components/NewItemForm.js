@@ -26,27 +26,25 @@ class NewItemForm extends Component {
     this.state = {
       newItem: '',
     };
-    this.inputUpdate = this.inputUpdate.bind(this);
-    this.submitHandler = this.submitHandler.bind(this);
   }
 
-  submitHandler(event) {
+  submitHandler = event => {
     event.preventDefault();
     this.props.newItemAction(this.state.newItem);
     this.setState({ newItem: '' });
-  }
+  };
 
-  inputUpdate(event) {
+  inputUpdate = event => {
     this.setState({ newItem: event.target.value });
-  }
+  };
 
   render() {
-    const classes = this.props.classes;
+    const { container, typeItem } = this.props.classes;
     return (
-      <div className={classes.container}>
+      <div className={container}>
         <form onSubmit={this.submitHandler}>
           <Grid container align={'center'}>
-            <Grid item className={classes.typeItem}>
+            <Grid item className={typeItem}>
               <TextField
                 id="newItem"
                 label="New Item"
@@ -86,11 +84,17 @@ class NewItemForm extends Component {
 }
 
 NewItemForm.propTypes = {
-  newItemAction: PropTypes.func,
+  newItemAction: PropTypes.func.isRequired,
   accentTextColor: PropTypes.string,
   accentColor: PropTypes.string,
   textColor: PropTypes.string,
-  classes: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+};
+
+NewItemForm.defaultProps = {
+  accentTextColor: 'black',
+  accentColor: 'blue',
+  textColor: 'black',
 };
 
 export default withStyles(styleSheet)(NewItemForm);

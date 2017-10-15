@@ -4,7 +4,7 @@ import { Holdable, defineHold } from 'react-touch';
 import Typography from 'material-ui/Typography';
 import PropTypes from 'prop-types';
 
-const NonEditItem = (props) => {
+const NonEditItem = props => {
   const lineStyle = props.complete ? { textDecoration: 'line-through' } : {};
   const hold = defineHold({ updateEvery: 50, holdFor: 500 });
   return (
@@ -32,11 +32,17 @@ const NonEditItem = (props) => {
 };
 
 NonEditItem.propTypes = {
-  primary: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  secondary: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  primary: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  secondary: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+    .isRequired,
   textColor: PropTypes.string,
   complete: PropTypes.bool,
-  updateHandler: PropTypes.func,
+  updateHandler: PropTypes.func.isRequired,
+};
+
+NonEditItem.defaultProps = {
+  textColor: 'black',
+  complete: false,
 };
 
 class EditableTextArea extends Component {
@@ -47,43 +53,35 @@ class EditableTextArea extends Component {
       editMode: false,
       editText: '',
     };
-
-    this.TextContainer = this.TextContainer.bind(this);
-    this.doubleClickHandler = this.doubleClickHandler.bind(this);
-    this.EditItem = this.EditItem.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
   }
-  EditItem() {
-    return (
-      <form onSubmit={this.handleBlur} style={{ width: '100%' }}>
-        <TextField
-          value={this.state.editText}
-          onChange={this.handleChange}
-          onBlur={this.handleBlur}
-          fullWidth
-          autoFocus
-          InputProps={{
-            style: {
-              color: this.props.textColor,
-            },
-          }}
-        />
-      </form>
-    );
-  }
+  EditItem = () => (
+    <form onSubmit={this.handleBlur} style={{ width: '100%' }}>
+      <TextField
+        value={this.state.editText}
+        onChange={this.handleChange}
+        onBlur={this.handleBlur}
+        fullWidth
+        autoFocus
+        InputProps={{
+          style: {
+            color: this.props.textColor,
+          },
+        }}
+      />
+    </form>
+  );
 
-  handleChange(event) {
+  handleChange = event => {
     this.setState({ editText: event.target.value });
-  }
+  };
 
-  handleBlur(event) {
+  handleBlur = event => {
     event.preventDefault();
     this.props.updateItem(this.props.id, this.state.editText);
     this.setState({ editMode: false });
-  }
+  };
 
-  TextContainer() {
+  TextContainer = () => {
     const EditItem = this.EditItem;
     if (this.state.editMode) {
       return <EditItem />;
@@ -102,7 +100,7 @@ class EditableTextArea extends Component {
         secondary={this.props.secondary}
       />
     );
-  }
+  };
 
   doubleClickHandler() {
     this.setState({ editMode: true, editText: this.props.primary });
@@ -115,12 +113,18 @@ class EditableTextArea extends Component {
 }
 
 EditableTextArea.propTypes = {
-  primary: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  secondary: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  primary: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  secondary: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+    .isRequired,
   textColor: PropTypes.string,
   complete: PropTypes.bool,
-  updateItem: PropTypes.func,
-  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  updateItem: PropTypes.func.isRequired,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+};
+
+EditableTextArea.defaultProps = {
+  textColor: 'black',
+  complete: false,
 };
 
 export default EditableTextArea;

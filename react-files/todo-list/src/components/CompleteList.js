@@ -14,11 +14,11 @@ const styleSheet = {
 };
 
 const CompleteList = props => {
-  const classes = props.classes;
+  const { container } = props.classes;
 
   return (
-    <List className={classes.container}>
-      {props.items.map(value =>
+    <List className={container}>
+      {props.items.map(value => (
         <ListItem
           key={`item-${value.id}`}
           value={value}
@@ -29,16 +29,20 @@ const CompleteList = props => {
           itemColor={fadedColorParser(value.color)}
           textColor={textColorParser(value.color)}
           updateItem={props.updateItem}
-        />,
-      )}
+        />
+      ))}
     </List>
   );
 };
 
 CompleteList.propTypes = {
-  classes: PropTypes.object,
-  updateItem: PropTypes.func,
-  items: PropTypes.array,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  updateItem: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  changeBaseComposer: PropTypes.func.isRequired,
+  deleteItemComposer: PropTypes.func.isRequired,
+  completeItemComposer: PropTypes.func.isRequired,
+  changeColorComposer: PropTypes.func.isRequired,
 };
 
 export default withStyles(styleSheet)(CompleteList);

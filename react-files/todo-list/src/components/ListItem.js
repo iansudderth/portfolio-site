@@ -36,12 +36,6 @@ class BaseListItem extends PureComponent {
       open: false,
       anchorEl: undefined,
     };
-
-    this.completeDisplay = this.completeDisplay.bind(this);
-    this.content = this.content.bind(this);
-    this.openMenu = this.openMenu.bind(this);
-    this.closeMenu = this.closeMenu.bind(this);
-    this.colorItemClickHandler = this.colorItemClickHandler.bind(this);
   }
 
   item = this.props.value;
@@ -58,7 +52,7 @@ class BaseListItem extends PureComponent {
     ? { color: this.completeGrey }
     : { color: this.textColor };
 
-  completeDisplay() {
+  completeDisplay = () => {
     const completed = this.item.completeChildren.length;
     const total = completed + this.item.incompleteChildren.length;
     const displayTextStyle = this.props.value.complete
@@ -72,9 +66,9 @@ class BaseListItem extends PureComponent {
         style={displayTextStyle}
       >{`( ${completed} / ${total} complete)`}</span>
     );
-  }
+  };
 
-  content() {
+  content = () => {
     const contentTextStyle = this.props.value.complete
       ? { color: this.completeGrey, textDecoration: 'line-through' }
       : { color: this.props.textColor };
@@ -89,24 +83,24 @@ class BaseListItem extends PureComponent {
         {this.item.content}
       </span>
     );
-  }
+  };
 
-  openMenu(event) {
+  openMenu = event => {
     this.setState({ open: true, anchorEl: event.currentTarget });
-  }
+  };
 
-  closeMenu() {
+  closeMenu = () => {
     this.setState({ open: false });
-  }
+  };
 
-  colorItemClickHandler(colorName) {
+  colorItemClickHandler = colorName => {
     const close = this.closeMenu;
     const changeColor = this.props.changeColorComposer(this.item.id, colorName);
-    return function() {
+    return () => {
       changeColor();
       close();
     };
-  }
+  };
 
   render() {
     const textColor = this.props.value.complete
@@ -185,15 +179,19 @@ class BaseListItem extends PureComponent {
 }
 
 BaseListItem.propTypes = {
-  deleteItemComposer: PropTypes.func,
-  changeBaseComposer: PropTypes.func,
-  completeItemComposer: PropTypes.func,
+  deleteItemComposer: PropTypes.func.isRequired,
+  changeBaseComposer: PropTypes.func.isRequired,
+  completeItemComposer: PropTypes.func.isRequired,
   itemColor: PropTypes.string,
   textColor: PropTypes.string,
-  value: PropTypes.object,
-  bgColor: PropTypes.string,
-  updateItem: PropTypes.func,
-  changeColorComposer: PropTypes.func,
+  value: PropTypes.object.isRequired,
+  updateItem: PropTypes.func.isRequired,
+  changeColorComposer: PropTypes.func.isRequired,
+};
+
+BaseListItem.defaultProps = {
+  itemColor: 'blue',
+  textColor: 'black',
 };
 
 export default BaseListItem;

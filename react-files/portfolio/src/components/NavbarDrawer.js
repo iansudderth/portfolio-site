@@ -6,7 +6,7 @@ import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-import { indigo, grey } from 'material-ui/colors';
+import { grey } from 'material-ui/colors';
 
 const styleSheet = {
   activePage: {
@@ -56,19 +56,18 @@ class NavbarDrawer extends Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const {
+      activePage,
+      inactivePage,
+      drawerItem,
+      drawerText,
+    } = this.props.classes;
     const aboutActive =
-      this.props.activePage === 'about'
-        ? classes.activePage
-        : classes.inactivePage;
+      this.props.activePage === 'about' ? activePage : inactivePage;
     const portfolioActive =
-      this.props.activePage === 'portfolio'
-        ? classes.activePage
-        : classes.inactivePage;
+      this.props.activePage === 'portfolio' ? activePage : inactivePage;
     const connectActive =
-      this.props.activePage === 'connect'
-        ? classes.activePage
-        : classes.inactivePage;
+      this.props.activePage === 'connect' ? activePage : inactivePage;
     return (
       <div>
         <IconButton
@@ -84,28 +83,28 @@ class NavbarDrawer extends Component {
           onRequestClose={this.closeDrawer}
         >
           <List>
-            <ListItem className={classes.drawerItem}>
+            <ListItem className={drawerItem}>
               <Typography
                 type="title"
-                className={`${aboutActive} ${classes.drawerText}`}
+                className={`${aboutActive} ${drawerText}`}
                 onClick={this.changePageComposer('about')}
               >
                 {'About'}
               </Typography>
             </ListItem>
-            <ListItem className={classes.drawerItem}>
+            <ListItem className={drawerItem}>
               <Typography
                 type="title"
-                className={`${portfolioActive} ${classes.drawerText}`}
+                className={`${portfolioActive} ${drawerText}`}
                 onClick={this.changePageComposer('portfolio')}
               >
                 {'Portfolio'}
               </Typography>
             </ListItem>
-            <ListItem className={classes.drawerItem}>
+            <ListItem className={drawerItem}>
               <Typography
                 type="title"
-                className={`${connectActive} ${classes.drawerText}`}
+                className={`${connectActive} ${drawerText}`}
                 onClick={this.changePageComposer('connect')}
               >
                 {'Connect'}
@@ -119,9 +118,13 @@ class NavbarDrawer extends Component {
 }
 
 NavbarDrawer.propTypes = {
-  classes: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   activePage: PropTypes.string,
-  changePageComposer: PropTypes.func,
+  changePageComposer: PropTypes.func.isRequired,
+};
+
+NavbarDrawer.defaultProps = {
+  activePage: 'about',
 };
 
 export default withStyles(styleSheet)(NavbarDrawer);

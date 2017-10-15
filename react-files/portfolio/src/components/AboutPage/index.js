@@ -30,31 +30,31 @@ const styleSheet = {
   },
 };
 const AboutPage = props => {
-  const classes = props.classes;
+  const { nameText, descriptionGroup, bodyText, avatar } = props.classes;
 
   return (
     <div>
       <Grid container spacing={24} justify="center">
         <Grid item xs={11} sm={10} md={9} lg={8}>
           <Card>
-            <Typography className={classes.nameText} type="display2">
+            <Typography className={nameText} type="display2">
               {'Ian Sudderth'}
             </Typography>
             <Divider />
-            <div className={classes.descriptionGroup}>
-              <Avatar src="/static/selfie.jpg" className={classes.avatar} />
+            <div className={descriptionGroup}>
+              <Avatar src="/static/selfie.jpg" className={avatar} />
               <Typography type="headline">About Me</Typography>
-              <Typography type="body1" className={classes.bodyText}>
+              <Typography type="body1" className={bodyText}>
                 {
                   'My name is Ian Sudderth and I am a Full-Stack developer, with more of an emphasis on the Front-End part of the equation.  I am thoroughly proficient in HTML, CSS, JavaScript, React, Redux, SASS, Node, Express, MongoDB, SQL, and Python.  I also have experience with design tools like Photoshop and Illustrator.  I am currently based in New York City.'
                 }
               </Typography>
-              <Typography type="body1" className={classes.bodyText}>
+              <Typography type="body1" className={bodyText}>
                 {
                   'Outside of coding, I have worked in Technology Education as an instructor for the New York Public Library, teaching and developing curricula for coding, Excel, and design classes.  I have excellent leadership skills and a great attention to detail.  I very much enjoy learning new things and am always eager to pick up new skills or improve my existing ones.'
                 }
               </Typography>
-              <Typography type="body1" className={classes.bodyText}>
+              <Typography type="body1" className={bodyText}>
                 {
                   "In my personal life, I'm a huge music nerd, I love discovering new artists and going to shows. I am also a soccer fan, love to cook, enjoy good conversation, dogs, and dive bars."
                 }
@@ -68,7 +68,7 @@ const AboutPage = props => {
 };
 
 AboutPage.propTypes = {
-  classes: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styleSheet)(AboutPage);

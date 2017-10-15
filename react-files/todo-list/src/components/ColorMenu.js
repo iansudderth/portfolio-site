@@ -5,7 +5,7 @@ import Dot from 'material-ui-icons/Brightness1';
 
 import { primaryColorParser } from '../helpers/colorParser';
 
-const ColorMenu = (props) => {
+const ColorMenu = props => {
   const colors = [
     'red',
     'pink',
@@ -26,12 +26,10 @@ const ColorMenu = (props) => {
         const breakLine = index % 4 === 3 ? <br /> : '';
 
         return (
-          <span
-            key={`${color}-${index}`}
-            onClick={props.clickHandler(color)}
-          >
+          <span key={`${color}`}>
             <IconButton
               style={{ color: primaryColorParser(color) }}
+              onClick={props.clickHandler(color)}
             >
               <Dot />
             </IconButton>
@@ -44,7 +42,7 @@ const ColorMenu = (props) => {
 };
 
 ColorMenu.propTypes = {
-  clickHandler: PropTypes.func,
+  clickHandler: PropTypes.func.isRequired,
 };
 
 export default ColorMenu;

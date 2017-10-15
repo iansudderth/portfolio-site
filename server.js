@@ -29,9 +29,14 @@ const recipeSeedDB = require('./server-files/seeds/recipeSeed');
 
 if (_.includes(process.argv, '--seed')) {
   todoSeedDB();
+  recipeSeedDB();
 }
 
-if (_.includes(process.argv, '--seed')) {
+if (_.includes(process.argv, '--todo-seed')) {
+  todoSeedDB();
+}
+
+if (_.includes(process.argv, '--recipe-seed')) {
   recipeSeedDB();
 }
 
@@ -51,20 +56,20 @@ const todoApiRoutes = require('./server-files/routes/todoApiRoutes');
 const recipeApiRoutes = require('./server-files/routes/recipeApiRoutes');
 const authRoutes = require('./server-files/routes/authRoutes');
 
+const sessionConfig = session({
+  secret: config.sessionSecret,
+  saveUninitialized: true,
+  resave: true,
+  store: new MongoStore({ mongooseConnection: db }),
+});
+
 app.prepare().then(() => {
   const server = express();
   server.use('/static', express.static('./static'));
   server.use(bodyParser.json());
+  server.use(sessionConfig);
   server.use(cookieParser());
   server.use(compression());
-  server.use(
-    session({
-      secret: config.sessionSecret,
-      saveUninitialized: true,
-      resave: true,
-      store: new MongoStore({ mongooseConnection: db }),
-    }),
-  );
 
   // =======================
   // Portfolio Render Routes
@@ -84,7 +89,7 @@ app.prepare().then(() => {
   // Recipe Routes
   // =======================
 
-  server.get('/recipe', pageRenderRoutes.renderHomePage(app));
+  server.get('/recipe', pageRenderRoutes.renderRecipeHomePage(app));
 
   // Recipe API Routes
 
