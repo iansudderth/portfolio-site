@@ -25,6 +25,22 @@ const portfolioItems = [
       'https://github.com/iansudderth/portfolio-site/tree/master/react-files/todo-list/src',
   },
   {
+    id: 'suddzzColor',
+    title: 'suddzzColor',
+    description: 'A small color toolbox for use in CSS-in-JS applications',
+    image: '/static/suddzzColor-screenshot.jpg',
+    link: 'https://github.com/iansudderth/suddzzColor',
+    linkText: 'Github',
+  },
+  {
+    id: 'suddzzCrypt',
+    title: 'suddzzCrypt',
+    description: 'A small encryption toolbox for Node.js',
+    image: '/static/suddzzCrypt-screenshot.jpg',
+    link: 'https://github.com/iansudderth/suddzzCrypt',
+    linkText: 'Github',
+  },
+  {
     id: 'site',
     title: 'This Site',
     description: 'A small Server-Side-Rendered React app as a Portfolio Site.',
