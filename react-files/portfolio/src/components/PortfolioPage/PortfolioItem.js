@@ -72,7 +72,7 @@ class PortfolioItem extends Component {
             )}
             {item.link ? (
               <Button dense href={item.link} target="_blank">
-                {'Launch'}
+                {item.linkText ? item.linkText : 'Launch'}
               </Button>
             ) : (
               <div />
@@ -90,7 +90,7 @@ class PortfolioItem extends Component {
           <DialogActions className={dialogActions}>
             {item.link ? (
               <Button href={item.link} target="_blank">
-                {'Launch'}
+                {item.linkText ? item.linkText : 'Launch'}
               </Button>
             ) : (
               <div />
