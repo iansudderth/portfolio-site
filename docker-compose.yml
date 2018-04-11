@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  mongo:
+    build: './mongo_database'
+    volumes:
+      - ./db:/data/db
+    ports:
+      - "27017:27017"
+  app:
+    build:
+      './portfolio site'
+    volumes:
+      - ./portfolio site:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    command: ["yarn","run","dev"]as
