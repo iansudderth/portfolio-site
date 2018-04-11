@@ -62,7 +62,7 @@
     "webpack-bundle-analyzer": "^2.9.0"
   },
   "engines": {
-    "node": "8.4.x"
+    "node": "8.11.1"
   },
   "prettier": {
     "printWidth": 80,
